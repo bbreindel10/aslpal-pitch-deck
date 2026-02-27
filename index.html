@@ -542,9 +542,9 @@
     .fade-in-delay-3 { transition-delay: 0.45s; }
     .fade-in-delay-4 { transition-delay: 0.6s; }
 
-    /* ── App Tips Scrollthrough (Slide 4) ──────── */
+    /* ── Tip Slidethrough (Slide 4) — matches ASL Pal Tips.svelte ── */
     .phone-shell {
-      width: 320px;
+      width: 340px;
       background: linear-gradient(145deg, rgba(255,255,255,0.1), rgba(255,255,255,0.03));
       border: 2px solid rgba(255,255,255,0.15);
       border-radius: 32px;
@@ -554,163 +554,203 @@
     }
 
     .phone-screen {
-      background: #111118;
+      background: #ffffff;
       border-radius: 22px;
       overflow: hidden;
-      height: 540px;
-      position: relative;
+      height: 520px;
+      display: flex;
+      flex-direction: column;
     }
 
-    .app-scroll-viewport {
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      animation: appScroll 16s ease-in-out infinite;
-    }
-
-    @keyframes appScroll {
-      0%   { transform: translateY(0); }
-      8%   { transform: translateY(0); }
-      18%  { transform: translateY(-200px); }
-      26%  { transform: translateY(-200px); }
-      36%  { transform: translateY(-420px); }
-      44%  { transform: translateY(-420px); }
-      54%  { transform: translateY(-640px); }
-      62%  { transform: translateY(-640px); }
-      72%  { transform: translateY(-860px); }
-      82%  { transform: translateY(-860px); }
-      95%  { transform: translateY(0); }
-      100% { transform: translateY(0); }
-    }
-
-    .app-header {
-      padding: 18px 20px 14px;
-      text-align: center;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-    }
-
-    .app-sign-label {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      color: var(--text-dim);
-      margin-bottom: 4px;
-    }
-
-    .app-sign-name {
-      font-size: 24px;
-      font-weight: 800;
-      letter-spacing: -0.5px;
-    }
-
-    /* Reference video area */
-    .app-video-area {
+    /* App-style header bar */
+    .tips-app-bar {
+      background: #6200b5;
       padding: 16px 20px;
-      text-align: center;
-    }
-
-    .app-video-thumb {
-      width: 100%;
-      aspect-ratio: 16/10;
-      border-radius: 12px;
-      background: linear-gradient(135deg, rgba(98,0,181,0.2), rgba(96,165,250,0.1));
       display: flex;
       align-items: center;
-      justify-content: center;
-      margin-bottom: 10px;
-      border: 1px solid rgba(255,255,255,0.08);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .app-video-thumb video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 12px;
-    }
-
-    .app-video-caption {
-      font-size: 12px;
-      color: var(--text-dim);
-      font-weight: 500;
-    }
-
-    /* Tip cards */
-    .app-tips-section {
-      padding: 4px 16px;
-    }
-
-    .app-tips-label {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      color: var(--text-dim);
-      padding: 12px 4px 10px;
-    }
-
-    .app-tip-card {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 14px;
-      padding: 16px;
-      margin-bottom: 10px;
-    }
-
-    .app-tip-header {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 10px;
-    }
-
-    .app-tip-icon {
-      width: 32px;
-      height: 32px;
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 16px;
+      gap: 12px;
       flex-shrink: 0;
     }
 
-    .app-tip-title {
-      font-size: 14px;
-      font-weight: 700;
-    }
-
-    .app-tip-text {
-      font-size: 12.5px;
-      color: var(--text-mid);
-      line-height: 1.6;
-    }
-
-    .app-tip-gif {
-      margin-top: 10px;
+    .tips-app-bar-back {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.15);
       display: flex;
       align-items: center;
-      gap: 10px;
-      padding: 10px;
-      background: rgba(255,255,255,0.03);
-      border-radius: 10px;
-      border: 1px solid rgba(255,255,255,0.05);
+      justify-content: center;
     }
 
-    .app-tip-gif img {
-      width: 48px;
-      height: 48px;
-      border-radius: 8px;
+    .tips-app-bar-back svg {
+      width: 14px;
+      height: 14px;
+      fill: none;
+      stroke: #fff;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
     }
 
-    .app-tip-gif-label {
-      font-size: 12px;
-      color: var(--text-mid);
-    }
-
-    .app-tip-gif-name {
-      font-size: 13px;
+    .tips-app-bar-title {
+      font-size: 15px;
       font-weight: 700;
-      color: #c084fc;
+      color: #fff;
+      letter-spacing: -0.2px;
+    }
+
+    /* Tips title — matches "Tips for success" */
+    .tips-heading {
+      padding: 20px 24px 12px;
+      font-size: 17px;
+      font-weight: 800;
+      color: #1f1f2f;
+      flex-shrink: 0;
+    }
+
+    /* The white card wrapper — matches .wrapper with .solid */
+    .tips-card-wrapper {
+      flex: 1;
+      margin: 0 16px;
+      background: #ffffff;
+      border: 1px solid rgba(0,0,77,0.08);
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    }
+
+    /* Slide area */
+    .tips-slide-area {
+      flex: 1;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .tips-slide-track {
+      display: flex;
+      width: 400%; /* 4 slides */
+      height: 100%;
+      animation: tipsSlide 16s ease-in-out infinite;
+    }
+
+    @keyframes tipsSlide {
+      0%    { transform: translateX(0); }
+      8%    { transform: translateX(0); }
+      17%   { transform: translateX(-25%); }
+      28%   { transform: translateX(-25%); }
+      37%   { transform: translateX(-50%); }
+      48%   { transform: translateX(-50%); }
+      57%   { transform: translateX(-75%); }
+      72%   { transform: translateX(-75%); }
+      83%   { transform: translateX(0); }
+      100%  { transform: translateX(0); }
+    }
+
+    .tips-slide {
+      width: 25%; /* 1/4 of track */
+      flex-shrink: 0;
+      padding: 24px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Numbered title — matches "1. Hand Position" style */
+    .tips-slide-number {
+      font-size: 16px;
+      font-weight: 800;
+      color: #1f1f2f;
+      margin-bottom: 14px;
+      line-height: 1.3;
+    }
+
+    /* Body text — matches .copy */
+    .tips-slide-copy {
+      font-size: 14px;
+      color: #444;
+      line-height: 1.7;
+      flex: 1;
+    }
+
+    /* Embedded image (handshape GIF) */
+    .tips-slide-img {
+      margin-top: 14px;
+      border-radius: 8px;
+      max-width: 100%;
+      height: auto;
+    }
+
+    /* Controls bar — matches .controls exactly */
+    .tips-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 24px 18px;
+      flex-shrink: 0;
+    }
+
+    .tips-nav-btn {
+      width: 32px;
+      height: 24px;
+      border: none;
+      border-radius: 12px;
+      background: rgba(36,36,66,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .tips-nav-btn svg {
+      width: 14px;
+      height: 14px;
+      fill: none;
+      stroke: #1f1f2f;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* Dot indicators — matches .dot-button / .dot */
+    .tips-dots {
+      display: flex;
+      gap: 3px;
+    }
+
+    .tips-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(36,36,66,0.2);
+    }
+
+    /* Animate dots to match current slide */
+    .tips-dot:nth-child(1) { animation: td1 16s ease-in-out infinite; }
+    .tips-dot:nth-child(2) { animation: td2 16s ease-in-out infinite; }
+    .tips-dot:nth-child(3) { animation: td3 16s ease-in-out infinite; }
+    .tips-dot:nth-child(4) { animation: td4 16s ease-in-out infinite; }
+
+    @keyframes td1 {
+      0%,8%     { background: #6200b5; }
+      17%,82%   { background: rgba(36,36,66,0.2); }
+      83%,100%  { background: #6200b5; }
+    }
+    @keyframes td2 {
+      0%,16%    { background: rgba(36,36,66,0.2); }
+      17%,28%   { background: #6200b5; }
+      37%,100%  { background: rgba(36,36,66,0.2); }
+    }
+    @keyframes td3 {
+      0%,36%    { background: rgba(36,36,66,0.2); }
+      37%,48%   { background: #6200b5; }
+      57%,100%  { background: rgba(36,36,66,0.2); }
+    }
+    @keyframes td4 {
+      0%,56%    { background: rgba(36,36,66,0.2); }
+      57%,82%   { background: #6200b5; }
+      83%,100%  { background: rgba(36,36,66,0.2); }
     }
   </style>
 </head>
@@ -848,85 +888,79 @@
     <p class="subtitle fade-in fade-in-delay-2" style="margin:0 auto 36px;">
       Each sign is evaluated across four key dimensions of ASL, based on reference videos from native Deaf signers.
     </p>
-    <div class="fade-in fade-in-delay-3" style="position:relative;max-width:340px;margin:0 auto;">
+    <div class="fade-in fade-in-delay-3" style="position:relative;max-width:360px;margin:0 auto;">
       <div class="phone-shell">
         <div class="phone-screen">
-          <div class="app-scroll-viewport">
 
-            <!-- Header: Sign name -->
-            <div class="app-header">
-              <div class="app-sign-label">Practice Sign</div>
-              <div class="app-sign-name">THANK YOU</div>
+          <!-- App bar -->
+          <div class="tips-app-bar">
+            <div class="tips-app-bar-back">
+              <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
             </div>
+            <div class="tips-app-bar-title">THANK YOU</div>
+          </div>
 
-            <!-- Reference video -->
-            <div class="app-video-area">
-              <div class="app-video-thumb">
-                <video autoplay muted loop playsinline>
-                  <source src="https://stream.mux.com/I41th00wjQK200jSLleNFFxMgGIsTMKw0156XMGs8dSQCw/high.mp4" type="video/mp4">
-                </video>
-              </div>
-              <div class="app-video-caption">DawnSignPress reference video</div>
-            </div>
+          <!-- "Tips for success" heading -->
+          <div class="tips-heading">Tips for success</div>
 
-            <!-- Tips Section -->
-            <div class="app-tips-section">
-              <div class="app-tips-label">What You're Graded On</div>
+          <!-- White card with carousel -->
+          <div class="tips-card-wrapper">
+            <div class="tips-slide-area">
+              <div class="tips-slide-track">
 
-              <!-- 1. Handshape -->
-              <div class="app-tip-card">
-                <div class="app-tip-header">
-                  <div class="app-tip-icon" style="background:rgba(192,132,252,0.15);color:#c084fc;">&#9995;</div>
-                  <div class="app-tip-title" style="color:#c084fc;">Handshape</div>
-                </div>
-                <div class="app-tip-text">Use the OPEN B handshape.</div>
-                <div class="app-tip-gif">
-                  <img src="https://cdn.sanity.io/images/x0fhtlkx/production/ec8a9fc7b88d55d85539f20b3bf9d696d17c3091-446x446.gif" alt="OPEN B handshape">
-                  <div>
-                    <div class="app-tip-gif-label">Reference</div>
-                    <div class="app-tip-gif-name">OPEN B</div>
+                <!-- Slide 1: Handshape -->
+                <div class="tips-slide">
+                  <div class="tips-slide-number">1. Handshape</div>
+                  <div class="tips-slide-copy">
+                    Use the OPEN B handshape.
+                    <img class="tips-slide-img" src="https://cdn.sanity.io/images/x0fhtlkx/production/ec8a9fc7b88d55d85539f20b3bf9d696d17c3091-446x446.gif" alt="OPEN B handshape">
                   </div>
                 </div>
-              </div>
 
-              <!-- 2. Movement -->
-              <div class="app-tip-card">
-                <div class="app-tip-header">
-                  <div class="app-tip-icon" style="background:rgba(52,211,153,0.15);color:#34d399;">&#10140;</div>
-                  <div class="app-tip-title" style="color:#34d399;">Movement</div>
+                <!-- Slide 2: Movement -->
+                <div class="tips-slide">
+                  <div class="tips-slide-number">2. Movement</div>
+                  <div class="tips-slide-copy">
+                    The fingertips start at the chin, then move outward and slightly downward in one smooth motion.
+                  </div>
                 </div>
-                <div class="app-tip-text">The fingertips start at the chin, then move outward and slightly downward in one smooth motion.</div>
-              </div>
 
-              <!-- 3. Location -->
-              <div class="app-tip-card">
-                <div class="app-tip-header">
-                  <div class="app-tip-icon" style="background:rgba(96,165,250,0.15);color:#60a5fa;">&#9673;</div>
-                  <div class="app-tip-title" style="color:#60a5fa;">Location</div>
+                <!-- Slide 3: Location -->
+                <div class="tips-slide">
+                  <div class="tips-slide-number">3. Location</div>
+                  <div class="tips-slide-copy">
+                    Starts at the chin, moves away from the face.
+                  </div>
                 </div>
-                <div class="app-tip-text">Starts at the chin, moves away from the face.</div>
-              </div>
 
-              <!-- 4. Palm Orientation -->
-              <div class="app-tip-card">
-                <div class="app-tip-header">
-                  <div class="app-tip-icon" style="background:rgba(251,191,36,0.15);color:#fbbf24;">&#9756;</div>
-                  <div class="app-tip-title" style="color:#fbbf24;">Palm Orientation</div>
+                <!-- Slide 4: Palm Orientation -->
+                <div class="tips-slide">
+                  <div class="tips-slide-number">4. Palm Orientation</div>
+                  <div class="tips-slide-copy">
+                    Palm faces toward the face at the start, then turns slightly upward during the motion.
+                  </div>
                 </div>
-                <div class="app-tip-text">Palm faces toward the face at the start, then turns slightly upward during the motion.</div>
-              </div>
 
-              <!-- 5. Facial Expression -->
-              <div class="app-tip-card">
-                <div class="app-tip-header">
-                  <div class="app-tip-icon" style="background:rgba(251,113,133,0.15);color:#fb7185;">&#9786;</div>
-                  <div class="app-tip-title" style="color:#fb7185;">Facial Expression</div>
-                </div>
-                <div class="app-tip-text">Warm and polite, usually includes a smile or soft expression to show gratitude.</div>
               </div>
+            </div>
 
+            <!-- Controls: arrows + dots -->
+            <div class="tips-controls">
+              <div class="tips-nav-btn">
+                <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+              </div>
+              <div class="tips-dots">
+                <div class="tips-dot"></div>
+                <div class="tips-dot"></div>
+                <div class="tips-dot"></div>
+                <div class="tips-dot"></div>
+              </div>
+              <div class="tips-nav-btn">
+                <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+              </div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
