@@ -767,6 +767,453 @@
       64%,83%   { background: #6200b5; }
       84%,100%  { background: rgba(36,36,66,0.2); }
     }
+
+    /* ── App Demo Walkthrough (Slide 5) ──────────── */
+    .demo-shell {
+      width: 760px;
+      max-width: 90vw;
+      background: #fff;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 40px rgba(96,165,250,0.1);
+      margin: 0 auto;
+      position: relative;
+    }
+
+    /* Browser chrome bar */
+    .demo-chrome {
+      background: #f0f0f3;
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 1px solid #e0e0e4;
+    }
+
+    .demo-chrome-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .demo-chrome-url {
+      flex: 1;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      padding: 4px 12px;
+      font-size: 11px;
+      color: #888;
+      margin-left: 8px;
+    }
+
+    .demo-viewport {
+      height: 420px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* 3 screens stacked, fade between them */
+    .demo-screen {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 0.6s ease;
+      overflow-y: auto;
+    }
+
+    .demo-screen:nth-child(1) { animation: screen1 15s ease-in-out infinite; }
+    .demo-screen:nth-child(2) { animation: screen2 15s ease-in-out infinite; }
+    .demo-screen:nth-child(3) { animation: screen3 15s ease-in-out infinite; }
+
+    @keyframes screen1 {
+      0%,5%   { opacity: 0; }
+      8%,28%  { opacity: 1; }
+      33%     { opacity: 0; }
+      100%    { opacity: 0; }
+    }
+    @keyframes screen2 {
+      0%,30%  { opacity: 0; }
+      35%,58% { opacity: 1; }
+      63%     { opacity: 0; }
+      100%    { opacity: 0; }
+    }
+    @keyframes screen3 {
+      0%,60%  { opacity: 0; }
+      65%,90% { opacity: 1; }
+      95%     { opacity: 0; }
+      100%    { opacity: 0; }
+    }
+
+    /* Screen 1: Dashboard */
+    .demo-dash {
+      background: #fafafe;
+      padding: 32px 40px;
+    }
+
+    .demo-dash-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .demo-dash-nav-item {
+      width: 36px;
+      height: 36px;
+      border-radius: 99px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      color: #999;
+    }
+
+    .demo-dash-nav-item.active {
+      background: #f2f2f6;
+      color: #6200b5;
+    }
+
+    .demo-dash-welcome {
+      font-size: 22px;
+      font-weight: 700;
+      color: #1f1f2f;
+      margin-bottom: 20px;
+      margin-left: 48px;
+    }
+
+    .demo-dash-search {
+      margin-left: 48px;
+      max-width: 320px;
+      background: #fff;
+      border: 1px solid rgba(36,36,66,0.2);
+      border-radius: 12px;
+      padding: 8px 14px;
+      font-size: 13px;
+      color: #999;
+      margin-bottom: 24px;
+    }
+
+    .demo-level-card {
+      margin-left: 48px;
+      border-radius: 20px;
+      padding: 28px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .demo-level-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 20px;
+      border: 2px solid transparent;
+      transition: border-color 0.3s;
+    }
+
+    .demo-level-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #1f1f2f;
+      margin-bottom: 4px;
+    }
+
+    .demo-level-sub {
+      font-size: 12px;
+      color: rgba(31,31,47,0.6);
+    }
+
+    .demo-level-btn {
+      padding: 6px 16px;
+      border-radius: 99px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #fff;
+      border: none;
+    }
+
+    /* Pulse highlight on level 1 */
+    .demo-level-card.highlight::after {
+      animation: pulseHighlight 15s ease-in-out infinite;
+    }
+
+    @keyframes pulseHighlight {
+      0%,12%  { border-color: transparent; }
+      16%,26% { border-color: #6200b5; }
+      30%     { border-color: transparent; }
+      100%    { border-color: transparent; }
+    }
+
+    /* Screen 2: Lesson list */
+    .demo-lessons {
+      background: linear-gradient(180deg, #d5e8fd 0%, #eef4ff 40%, #fafafe 100%);
+      padding: 0;
+    }
+
+    .demo-lessons-hero {
+      padding: 24px 40px 20px;
+    }
+
+    .demo-lessons-back {
+      font-size: 12px;
+      color: rgba(31,31,47,0.6);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .demo-lessons-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: #1f1f2f;
+      margin-bottom: 4px;
+    }
+
+    .demo-lessons-sub {
+      font-size: 13px;
+      color: rgba(31,31,47,0.6);
+      margin-bottom: 16px;
+    }
+
+    .demo-unit-label {
+      padding: 0 40px;
+      font-size: 12px;
+      font-weight: 600;
+      color: rgba(31,31,47,0.5);
+      margin-bottom: 10px;
+    }
+
+    .demo-lesson-list {
+      padding: 0 40px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .demo-lesson-item {
+      background: #fff;
+      border: 1px solid #fff;
+      border-radius: 12px;
+      padding: 14px 16px 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 14px;
+      font-weight: 500;
+      color: #1f1f2f;
+      text-transform: lowercase;
+    }
+
+    .demo-lesson-item.locked {
+      background: transparent;
+      border-color: rgba(36,36,66,0.1);
+      color: rgba(31,31,47,0.5);
+    }
+
+    .demo-lesson-btn {
+      padding: 5px 14px;
+      border-radius: 99px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #fff;
+      background: #450242;
+      border: none;
+    }
+
+    .demo-lesson-btn.locked {
+      background: rgba(36,36,66,0.1);
+      color: rgba(31,31,47,0.4);
+    }
+
+    /* Pulse highlight on thank you */
+    .demo-lesson-item.highlight {
+      position: relative;
+    }
+
+    .demo-lesson-item.highlight::after {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border-radius: 14px;
+      border: 2px solid transparent;
+      animation: pulseLesson 15s ease-in-out infinite;
+    }
+
+    @keyframes pulseLesson {
+      0%,40%  { border-color: transparent; }
+      44%,56% { border-color: #6200b5; }
+      60%     { border-color: transparent; }
+      100%    { border-color: transparent; }
+    }
+
+    /* Screen 3: Thank You lesson */
+    .demo-lesson-view {
+      background: linear-gradient(180deg, #d5e8fd 0%, #fafafe 30%);
+      padding: 20px 40px;
+      display: flex;
+      gap: 24px;
+      height: 100%;
+    }
+
+    .demo-lesson-left {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .demo-lesson-back {
+      font-size: 12px;
+      color: rgba(31,31,47,0.6);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .demo-lesson-sign-title {
+      padding: 6px 16px;
+      border: 1.5px solid #1f1f2f;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 700;
+      color: #1f1f2f;
+      text-transform: lowercase;
+      display: inline-block;
+      margin-bottom: 16px;
+    }
+
+    .demo-lesson-video {
+      flex: 1;
+      background: #000;
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 200px;
+    }
+
+    .demo-lesson-video video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .demo-lesson-right {
+      width: 260px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .demo-tips-box {
+      background: #fff;
+      border: 1px solid rgba(0,0,77,0.08);
+      border-radius: 12px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+
+    .demo-tips-title {
+      padding: 14px 16px 10px;
+      font-size: 14px;
+      font-weight: 800;
+      color: #1f1f2f;
+    }
+
+    .demo-tips-content {
+      padding: 0 16px 16px;
+      flex: 1;
+    }
+
+    .demo-tips-num {
+      font-size: 14px;
+      font-weight: 800;
+      color: #1f1f2f;
+      margin-bottom: 8px;
+    }
+
+    .demo-tips-text {
+      font-size: 12px;
+      color: #555;
+      line-height: 1.6;
+    }
+
+    .demo-tips-img {
+      margin-top: 8px;
+      width: 80px;
+      border-radius: 8px;
+    }
+
+    .demo-tips-dots {
+      padding: 10px 16px 14px;
+      display: flex;
+      justify-content: center;
+      gap: 4px;
+    }
+
+    .demo-tips-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(36,36,66,0.2);
+    }
+
+    .demo-tips-dot.active {
+      background: #6200b5;
+    }
+
+    .demo-record-btn {
+      margin-top: 12px;
+      width: 100%;
+      padding: 10px;
+      border-radius: 99px;
+      background: linear-gradient(135deg, #6200b5, #8383f7);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 700;
+      border: none;
+      text-align: center;
+    }
+
+    /* Click cursor animation */
+    .demo-cursor {
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    .demo-cursor svg {
+      width: 24px;
+      height: 24px;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+    }
+
+    .demo-cursor { animation: cursorMove 15s ease-in-out infinite; }
+
+    @keyframes cursorMove {
+      0%,8%   { left: 50%; top: 45%; opacity: 0; }
+      12%     { left: 50%; top: 45%; opacity: 1; }
+      22%,25% { left: 55%; top: 32%; opacity: 1; }
+      28%     { left: 55%; top: 32%; opacity: 0; transform: scale(0.9); }
+      30%,38% { opacity: 0; }
+      40%     { left: 40%; top: 68%; opacity: 1; }
+      50%,53% { left: 40%; top: 68%; opacity: 1; }
+      56%     { left: 40%; top: 68%; opacity: 0; transform: scale(0.9); }
+      58%,100% { opacity: 0; }
+    }
   </style>
 </head>
 <body>
@@ -990,20 +1437,124 @@
 <section class="slide" id="slide-5">
   <div class="glow-orb glow-purple" style="width:700px;height:700px;top:0;left:50%;transform:translateX(-50%);"></div>
   <div class="slide-inner" style="text-align:center;">
-    <div class="slide-label fade-in">Live Demo</div>
+    <div class="slide-label fade-in">App Walkthrough</div>
     <h2 class="fade-in fade-in-delay-1" style="margin-bottom:12px;">See ASL Pal in Action</h2>
     <p class="subtitle fade-in fade-in-delay-2" style="margin:0 auto 36px;">
-      Watch how a learner signs, gets scored across all four dimensions, and receives targeted feedback with handshape GIFs and reference videos.
+      From the dashboard, select a level, choose a sign, and start practicing with real-time tips and feedback.
     </p>
-    <div class="demo-container fade-in fade-in-delay-3">
-      <video controls preload="metadata" poster="">
-        <source src="ASL Pal Demo.mp4" type="video/mp4">
-      </video>
-      <div class="demo-placeholder" id="demoPlay1" onclick="this.style.display='none';this.parentElement.querySelector('video').play();">
-        <div class="play-btn">
-          <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+    <div class="fade-in fade-in-delay-3">
+      <div class="demo-shell">
+        <!-- Browser chrome -->
+        <div class="demo-chrome">
+          <div class="demo-chrome-dot" style="background:#ff5f57;"></div>
+          <div class="demo-chrome-dot" style="background:#ffbd2e;"></div>
+          <div class="demo-chrome-dot" style="background:#28c840;"></div>
+          <div class="demo-chrome-url">aslpal.dawnsignpress.com</div>
         </div>
-        <span style="font-size:15px;font-weight:600;color:var(--text-mid);">Click to play demo</span>
+
+        <div class="demo-viewport">
+          <!-- Animated cursor -->
+          <div class="demo-cursor">
+            <svg viewBox="0 0 24 24" fill="#fff" stroke="#333" stroke-width="1"><path d="M5 3l14 9-7 2-4 7z"/></svg>
+          </div>
+
+          <!-- Screen 1: Dashboard -->
+          <div class="demo-screen demo-dash">
+            <div class="demo-dash-nav">
+              <div class="demo-dash-nav-item active">&#9673;</div>
+              <div class="demo-dash-nav-item">&#9783;</div>
+              <div class="demo-dash-nav-item">&#9881;</div>
+            </div>
+            <div class="demo-dash-welcome">Welcome, Sarah</div>
+            <div class="demo-dash-search">&#128269; Search for a sign...</div>
+            <div class="demo-level-card highlight" style="background:linear-gradient(135deg,#d5e8fd,#eef4ff);">
+              <div>
+                <div class="demo-level-title">Level 1</div>
+                <div class="demo-level-sub">Foundations, Interactions &amp; Basic Questions</div>
+              </div>
+              <div class="demo-level-btn" style="background:#450242;">Continue</div>
+            </div>
+            <div class="demo-level-card" style="background:linear-gradient(135deg,#f1eaff,#f8f4ff);">
+              <div>
+                <div class="demo-level-title">Level 2</div>
+                <div class="demo-level-sub">Family, Descriptions &amp; Daily Routines</div>
+              </div>
+              <div class="demo-level-btn" style="background:#091257;">Start</div>
+            </div>
+            <div class="demo-level-card" style="background:linear-gradient(135deg,#e4fae8,#f2faf4);">
+              <div>
+                <div class="demo-level-title">Level 3</div>
+                <div class="demo-level-sub">Community, Culture &amp; Storytelling</div>
+              </div>
+              <div class="demo-level-btn locked" style="background:rgba(36,36,66,0.1);color:rgba(31,31,47,0.4);">Locked</div>
+            </div>
+          </div>
+
+          <!-- Screen 2: Lesson List -->
+          <div class="demo-screen demo-lessons">
+            <div class="demo-lessons-hero">
+              <div class="demo-lessons-back">&#8592; Back to Dashboard</div>
+              <div class="demo-lessons-title">Level 1</div>
+              <div class="demo-lessons-sub">Foundations, Interactions &amp; Basic Questions</div>
+            </div>
+            <div class="demo-unit-label">Unit 1 &mdash; Greetings &amp; Introductions</div>
+            <div class="demo-lesson-list">
+              <div class="demo-lesson-item" style="opacity:0.7;">
+                <span>&#10003;&ensp;hello</span>
+                <div class="demo-lesson-btn" style="background:#ccc;color:#888;">Practice</div>
+              </div>
+              <div class="demo-lesson-item" style="opacity:0.7;">
+                <span>&#10003;&ensp;my name is</span>
+                <div class="demo-lesson-btn" style="background:#ccc;color:#888;">Practice</div>
+              </div>
+              <div class="demo-lesson-item highlight">
+                <span>&#9654;&ensp;thank you</span>
+                <div class="demo-lesson-btn">Start</div>
+              </div>
+              <div class="demo-lesson-item locked">
+                <span>&#128274;&ensp;please</span>
+                <div class="demo-lesson-btn locked">Locked</div>
+              </div>
+              <div class="demo-lesson-item locked">
+                <span>&#128274;&ensp;sorry</span>
+                <div class="demo-lesson-btn locked">Locked</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Screen 3: Thank You Lesson View -->
+          <div class="demo-screen demo-lesson-view">
+            <div class="demo-lesson-left">
+              <div class="demo-lesson-back">&#8592; Back to Level 1</div>
+              <div class="demo-lesson-sign-title">how to sign thank you</div>
+              <div class="demo-lesson-video">
+                <video autoplay muted loop playsinline>
+                  <source src="https://stream.mux.com/I41th00wjQK200jSLleNFFxMgGIsTMKw0156XMGs8dSQCw/high.mp4" type="video/mp4">
+                </video>
+              </div>
+            </div>
+            <div class="demo-lesson-right">
+              <div class="demo-tips-box">
+                <div class="demo-tips-title">Tips for success</div>
+                <div class="demo-tips-content">
+                  <div class="demo-tips-num">1. Handshape</div>
+                  <div class="demo-tips-text">
+                    Use the OPEN B handshape.
+                    <br><img class="demo-tips-img" src="https://cdn.sanity.io/images/x0fhtlkx/production/ec8a9fc7b88d55d85539f20b3bf9d696d17c3091-446x446.gif" alt="OPEN B">
+                  </div>
+                </div>
+                <div class="demo-tips-dots">
+                  <div class="demo-tips-dot active"></div>
+                  <div class="demo-tips-dot"></div>
+                  <div class="demo-tips-dot"></div>
+                  <div class="demo-tips-dot"></div>
+                </div>
+              </div>
+              <div class="demo-record-btn">&#9679; Record Your Sign</div>
+            </div>
+          </div>
+
+        </div>
       </div>
     </div>
   </div>
