@@ -542,7 +542,7 @@
     .fade-in-delay-3 { transition-delay: 0.45s; }
     .fade-in-delay-4 { transition-delay: 0.6s; }
 
-    /* ── App Scrollthrough (Slide 4) ────────────── */
+    /* ── App Tips Scrollthrough (Slide 4) ──────── */
     .phone-shell {
       width: 320px;
       background: linear-gradient(145deg, rgba(255,255,255,0.1), rgba(255,255,255,0.03));
@@ -557,107 +557,90 @@
       background: #111118;
       border-radius: 22px;
       overflow: hidden;
-      height: 520px;
+      height: 540px;
       position: relative;
     }
 
     .app-scroll-viewport {
       position: absolute;
       top: 0; left: 0; right: 0;
-      animation: appScroll 12s ease-in-out infinite;
+      animation: appScroll 16s ease-in-out infinite;
     }
 
     @keyframes appScroll {
       0%   { transform: translateY(0); }
-      10%  { transform: translateY(0); }
-      25%  { transform: translateY(-120px); }
-      35%  { transform: translateY(-120px); }
-      50%  { transform: translateY(-340px); }
-      60%  { transform: translateY(-340px); }
-      75%  { transform: translateY(-520px); }
-      88%  { transform: translateY(-520px); }
+      8%   { transform: translateY(0); }
+      18%  { transform: translateY(-200px); }
+      26%  { transform: translateY(-200px); }
+      36%  { transform: translateY(-420px); }
+      44%  { transform: translateY(-420px); }
+      54%  { transform: translateY(-640px); }
+      62%  { transform: translateY(-640px); }
+      72%  { transform: translateY(-860px); }
+      82%  { transform: translateY(-860px); }
+      95%  { transform: translateY(0); }
       100% { transform: translateY(0); }
     }
 
     .app-header {
-      padding: 20px 20px 16px;
+      padding: 18px 20px 14px;
       text-align: center;
       border-bottom: 1px solid rgba(255,255,255,0.06);
     }
 
-    .app-sign-title {
-      font-size: 13px;
+    .app-sign-label {
+      font-size: 11px;
       text-transform: uppercase;
-      letter-spacing: 1.5px;
+      letter-spacing: 2px;
       color: var(--text-dim);
-      margin-bottom: 6px;
+      margin-bottom: 4px;
     }
 
     .app-sign-name {
-      font-size: 26px;
+      font-size: 24px;
       font-weight: 800;
       letter-spacing: -0.5px;
     }
 
-    .app-overall-score {
-      padding: 24px 20px;
+    /* Reference video area */
+    .app-video-area {
+      padding: 16px 20px;
       text-align: center;
     }
 
-    .score-ring {
-      width: 110px;
-      height: 110px;
-      border-radius: 50%;
-      border: 5px solid rgba(255,255,255,0.06);
-      margin: 0 auto 12px;
+    .app-video-thumb {
+      width: 100%;
+      aspect-ratio: 16/10;
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(98,0,181,0.2), rgba(96,165,250,0.1));
       display: flex;
       align-items: center;
       justify-content: center;
+      margin-bottom: 10px;
+      border: 1px solid rgba(255,255,255,0.08);
       position: relative;
+      overflow: hidden;
     }
 
-    .score-ring::before {
-      content: '';
-      position: absolute;
-      inset: -5px;
-      border-radius: 50%;
-      border: 5px solid transparent;
-      border-top-color: #34d399;
-      border-right-color: #34d399;
-      border-bottom-color: #34d399;
-      animation: scoreRingFill 2s ease-out forwards;
-      animation-delay: 0.5s;
+    .app-video-thumb video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 12px;
     }
 
-    @keyframes scoreRingFill {
-      from { opacity: 0; transform: rotate(-90deg); }
-      to   { opacity: 1; transform: rotate(180deg); }
-    }
-
-    .score-ring-number {
-      font-size: 36px;
-      font-weight: 800;
-      letter-spacing: -1px;
-    }
-
-    .score-quality {
-      font-size: 15px;
-      font-weight: 700;
-      color: #34d399;
-      margin-bottom: 4px;
-    }
-
-    .score-summary {
-      font-size: 13px;
+    .app-video-caption {
+      font-size: 12px;
       color: var(--text-dim);
-      line-height: 1.4;
+      font-weight: 500;
     }
 
-    .app-dim-section {
-      padding: 8px 16px;
+    /* Tip cards */
+    .app-tips-section {
+      padding: 4px 16px;
     }
 
-    .app-dim-label-row {
+    .app-tips-label {
       font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 1.5px;
@@ -665,7 +648,7 @@
       padding: 12px 4px 10px;
     }
 
-    .app-dim-card {
+    .app-tip-card {
       background: rgba(255,255,255,0.04);
       border: 1px solid rgba(255,255,255,0.06);
       border-radius: 14px;
@@ -673,77 +656,61 @@
       margin-bottom: 10px;
     }
 
-    .app-dim-card-header {
+    .app-tip-header {
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      gap: 10px;
       margin-bottom: 10px;
     }
 
-    .app-dim-name {
-      font-size: 15px;
+    .app-tip-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+
+    .app-tip-title {
+      font-size: 14px;
       font-weight: 700;
-      display: flex;
-      align-items: center;
-      gap: 8px;
     }
 
-    .app-dim-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      display: inline-block;
-    }
-
-    .app-dim-score {
-      font-size: 20px;
-      font-weight: 800;
-    }
-
-    .app-dim-bar-track {
-      height: 6px;
-      background: rgba(255,255,255,0.06);
-      border-radius: 6px;
-      overflow: hidden;
-      margin-bottom: 10px;
-    }
-
-    .app-dim-bar-fill {
-      height: 100%;
-      border-radius: 6px;
-      animation: barGrow 1.5s ease-out forwards;
-    }
-
-    @keyframes barGrow {
-      from { width: 0 !important; }
-    }
-
-    .app-dim-feedback {
+    .app-tip-text {
       font-size: 12.5px;
       color: var(--text-mid);
-      line-height: 1.5;
+      line-height: 1.6;
     }
 
-    .app-priority {
-      margin: 6px 16px 20px;
-      padding: 14px 16px;
-      background: rgba(96,165,250,0.08);
-      border: 1px solid rgba(96,165,250,0.15);
-      border-radius: 12px;
-      text-align: center;
+    .app-tip-gif {
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px;
+      background: rgba(255,255,255,0.03);
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.05);
     }
 
-    .app-priority-label {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 1.2px;
-      color: #60a5fa;
-      margin-bottom: 4px;
+    .app-tip-gif img {
+      width: 48px;
+      height: 48px;
+      border-radius: 8px;
     }
 
-    .app-priority-text {
-      font-size: 13px;
+    .app-tip-gif-label {
+      font-size: 12px;
       color: var(--text-mid);
+    }
+
+    .app-tip-gif-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: #c084fc;
     }
   </style>
 </head>
@@ -882,106 +849,86 @@
       Each sign is evaluated across four key dimensions of ASL, based on reference videos from native Deaf signers.
     </p>
     <div class="fade-in fade-in-delay-3" style="position:relative;max-width:340px;margin:0 auto;">
-      <!-- Phone mockup with animated app scrollthrough -->
       <div class="phone-shell">
         <div class="phone-screen">
           <div class="app-scroll-viewport">
 
-            <!-- App Header -->
+            <!-- Header: Sign name -->
             <div class="app-header">
-              <div class="app-sign-title">Your Results</div>
-              <div class="app-sign-name">SEND</div>
+              <div class="app-sign-label">Practice Sign</div>
+              <div class="app-sign-name">THANK YOU</div>
             </div>
 
-            <!-- Overall Score -->
-            <div class="app-overall-score">
-              <div class="score-ring">
-                <span class="score-ring-number">82</span>
+            <!-- Reference video -->
+            <div class="app-video-area">
+              <div class="app-video-thumb">
+                <video autoplay muted loop playsinline>
+                  <source src="https://stream.mux.com/I41th00wjQK200jSLleNFFxMgGIsTMKw0156XMGs8dSQCw/high.mp4" type="video/mp4">
+                </video>
               </div>
-              <div class="score-quality">Good</div>
-              <div class="score-summary">Great job on SEND! Focus on improving your location.</div>
+              <div class="app-video-caption">DawnSignPress reference video</div>
             </div>
 
-            <!-- Dimension Section -->
-            <div class="app-dim-section">
-              <div class="app-dim-label-row">Dimension Breakdown</div>
+            <!-- Tips Section -->
+            <div class="app-tips-section">
+              <div class="app-tips-label">What You're Graded On</div>
 
-              <!-- Handshape -->
-              <div class="app-dim-card">
-                <div class="app-dim-card-header">
-                  <div class="app-dim-name">
-                    <span class="app-dim-dot" style="background:#c084fc;"></span>
-                    Handshape
+              <!-- 1. Handshape -->
+              <div class="app-tip-card">
+                <div class="app-tip-header">
+                  <div class="app-tip-icon" style="background:rgba(192,132,252,0.15);color:#c084fc;">&#9995;</div>
+                  <div class="app-tip-title" style="color:#c084fc;">Handshape</div>
+                </div>
+                <div class="app-tip-text">Use the OPEN B handshape.</div>
+                <div class="app-tip-gif">
+                  <img src="https://cdn.sanity.io/images/x0fhtlkx/production/ec8a9fc7b88d55d85539f20b3bf9d696d17c3091-446x446.gif" alt="OPEN B handshape">
+                  <div>
+                    <div class="app-tip-gif-label">Reference</div>
+                    <div class="app-tip-gif-name">OPEN B</div>
                   </div>
-                  <div class="app-dim-score" style="color:#34d399;">85</div>
                 </div>
-                <div class="app-dim-bar-track">
-                  <div class="app-dim-bar-fill" style="width:85%;background:linear-gradient(90deg,#c084fc,#a855f7);"></div>
-                </div>
-                <div class="app-dim-feedback">Your handshape for SEND looks correct! This sign uses the OPEN B handshape.</div>
               </div>
 
-              <!-- Location -->
-              <div class="app-dim-card">
-                <div class="app-dim-card-header">
-                  <div class="app-dim-name">
-                    <span class="app-dim-dot" style="background:#60a5fa;"></span>
-                    Location
-                  </div>
-                  <div class="app-dim-score" style="color:#fbbf24;">68</div>
+              <!-- 2. Movement -->
+              <div class="app-tip-card">
+                <div class="app-tip-header">
+                  <div class="app-tip-icon" style="background:rgba(52,211,153,0.15);color:#34d399;">&#10140;</div>
+                  <div class="app-tip-title" style="color:#34d399;">Movement</div>
                 </div>
-                <div class="app-dim-bar-track">
-                  <div class="app-dim-bar-fill" style="width:68%;background:linear-gradient(90deg,#60a5fa,#3b82f6);"></div>
-                </div>
-                <div class="app-dim-feedback">Hand placement is close. This sign is made in front of the torso, at chest level.</div>
+                <div class="app-tip-text">The fingertips start at the chin, then move outward and slightly downward in one smooth motion.</div>
               </div>
 
-              <!-- Movement -->
-              <div class="app-dim-card">
-                <div class="app-dim-card-header">
-                  <div class="app-dim-name">
-                    <span class="app-dim-dot" style="background:#34d399;"></span>
-                    Movement
-                  </div>
-                  <div class="app-dim-score" style="color:#34d399;">88</div>
+              <!-- 3. Location -->
+              <div class="app-tip-card">
+                <div class="app-tip-header">
+                  <div class="app-tip-icon" style="background:rgba(96,165,250,0.15);color:#60a5fa;">&#9673;</div>
+                  <div class="app-tip-title" style="color:#60a5fa;">Location</div>
                 </div>
-                <div class="app-dim-bar-track">
-                  <div class="app-dim-bar-fill" style="width:88%;background:linear-gradient(90deg,#34d399,#10b981);"></div>
-                </div>
-                <div class="app-dim-feedback">Your movement for SEND is on point! Move forward and slightly outward.</div>
+                <div class="app-tip-text">Starts at the chin, moves away from the face.</div>
               </div>
 
-              <!-- Orientation -->
-              <div class="app-dim-card">
-                <div class="app-dim-card-header">
-                  <div class="app-dim-name">
-                    <span class="app-dim-dot" style="background:#fbbf24;"></span>
-                    Orientation
-                  </div>
-                  <div class="app-dim-score" style="color:#34d399;">76</div>
+              <!-- 4. Palm Orientation -->
+              <div class="app-tip-card">
+                <div class="app-tip-header">
+                  <div class="app-tip-icon" style="background:rgba(251,191,36,0.15);color:#fbbf24;">&#9756;</div>
+                  <div class="app-tip-title" style="color:#fbbf24;">Palm Orientation</div>
                 </div>
-                <div class="app-dim-bar-track">
-                  <div class="app-dim-bar-fill" style="width:76%;background:linear-gradient(90deg,#fbbf24,#f59e0b);"></div>
-                </div>
-                <div class="app-dim-feedback">Palm orientation is close. For SEND, palm faces slightly outward.</div>
+                <div class="app-tip-text">Palm faces toward the face at the start, then turns slightly upward during the motion.</div>
               </div>
+
+              <!-- 5. Facial Expression -->
+              <div class="app-tip-card">
+                <div class="app-tip-header">
+                  <div class="app-tip-icon" style="background:rgba(251,113,133,0.15);color:#fb7185;">&#9786;</div>
+                  <div class="app-tip-title" style="color:#fb7185;">Facial Expression</div>
+                </div>
+                <div class="app-tip-text">Warm and polite, usually includes a smile or soft expression to show gratitude.</div>
+              </div>
+
             </div>
-
-            <!-- Priority Improvement -->
-            <div class="app-priority">
-              <div class="app-priority-label">Priority Improvement</div>
-              <div class="app-priority-text">Focus on your <strong style="color:#60a5fa;">Location</strong> for the biggest improvement.</div>
-            </div>
-
           </div>
         </div>
       </div>
-
-      <!-- Floating dimension labels -->
-      <div style="position:absolute;top:15%;left:-120px;background:rgba(192,132,252,0.15);border:1px solid rgba(192,132,252,0.3);border-radius:20px;padding:6px 16px;font-size:13px;font-weight:600;color:#c084fc;backdrop-filter:blur(8px);">Handshape</div>
-      <div style="position:absolute;top:35%;left:-100px;background:rgba(96,165,250,0.15);border:1px solid rgba(96,165,250,0.3);border-radius:20px;padding:6px 16px;font-size:13px;font-weight:600;color:#60a5fa;backdrop-filter:blur(8px);">Location</div>
-      <div style="position:absolute;top:55%;left:-110px;background:rgba(52,211,153,0.15);border:1px solid rgba(52,211,153,0.3);border-radius:20px;padding:6px 16px;font-size:13px;font-weight:600;color:#34d399;backdrop-filter:blur(8px);">Movement</div>
-      <div style="position:absolute;top:75%;left:-120px;background:rgba(251,191,36,0.15);border:1px solid rgba(251,191,36,0.3);border-radius:20px;padding:6px 16px;font-size:13px;font-weight:600;color:#fbbf24;backdrop-filter:blur(8px);">Orientation</div>
     </div>
   </div>
   <div class="slide-num">04 / 12</div>
