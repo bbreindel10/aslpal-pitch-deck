@@ -557,7 +557,7 @@
       background: #ffffff;
       border-radius: 22px;
       overflow: hidden;
-      height: 520px;
+      height: 580px;
       display: flex;
       flex-direction: column;
     }
@@ -565,7 +565,7 @@
     /* App-style header bar — gradient purple */
     .tips-app-bar {
       background: linear-gradient(135deg, #6200b5, #8383f7);
-      padding: 16px 20px;
+      padding: 14px 16px;
       display: flex;
       align-items: center;
       gap: 12px;
@@ -599,17 +599,16 @@
       letter-spacing: -0.2px;
     }
 
-    /* Title box — matches TitleBox.svelte */
+    /* Title box — inside the purple bar */
     .tips-title-box {
-      margin: 16px 16px 0;
-      padding: 16px 20px;
-      border: 1.5px solid #1f1f2f;
+      padding: 10px 16px;
+      border: 1.5px solid rgba(255,255,255,0.5);
       border-radius: 12px;
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 700;
-      color: #1f1f2f;
+      color: #fff;
       text-transform: lowercase;
-      flex-shrink: 0;
+      flex: 1;
     }
 
     /* Tips title — matches "Tips for success" */
@@ -905,16 +904,13 @@
       <div class="phone-shell">
         <div class="phone-screen">
 
-          <!-- App bar -->
+          <!-- App bar with title box -->
           <div class="tips-app-bar">
             <div class="tips-app-bar-back">
               <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
             </div>
-            <div class="tips-app-bar-title">Practice</div>
+            <div class="tips-title-box">how to sign thank you</div>
           </div>
-
-          <!-- Title box — matches TitleBox.svelte -->
-          <div class="tips-title-box">how to sign thank you</div>
 
           <!-- "Tips for success" heading -->
           <div class="tips-heading">Tips for success</div>
