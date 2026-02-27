@@ -562,9 +562,9 @@
       flex-direction: column;
     }
 
-    /* App-style header bar */
+    /* App-style header bar — gradient purple */
     .tips-app-bar {
-      background: #6200b5;
+      background: linear-gradient(135deg, #6200b5, #8383f7);
       padding: 16px 20px;
       display: flex;
       align-items: center;
@@ -599,9 +599,22 @@
       letter-spacing: -0.2px;
     }
 
+    /* Title box — matches TitleBox.svelte */
+    .tips-title-box {
+      margin: 16px 16px 0;
+      padding: 16px 20px;
+      border: 1.5px solid #1f1f2f;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 700;
+      color: #1f1f2f;
+      text-transform: lowercase;
+      flex-shrink: 0;
+    }
+
     /* Tips title — matches "Tips for success" */
     .tips-heading {
-      padding: 20px 24px 12px;
+      padding: 18px 24px 10px;
       font-size: 17px;
       font-weight: 800;
       color: #1f1f2f;
@@ -897,8 +910,11 @@
             <div class="tips-app-bar-back">
               <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
             </div>
-            <div class="tips-app-bar-title">THANK YOU</div>
+            <div class="tips-app-bar-title">Practice</div>
           </div>
+
+          <!-- Title box — matches TitleBox.svelte -->
+          <div class="tips-title-box">how to sign thank you</div>
 
           <!-- "Tips for success" heading -->
           <div class="tips-heading">Tips for success</div>
