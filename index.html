@@ -671,47 +671,26 @@
      ═══════════════════════════════════════════════════ -->
 <section class="slide" id="slide-4">
   <div class="glow-orb glow-blue" style="width:600px;height:600px;top:-10%;left:20%;"></div>
-  <div class="slide-inner">
+  <div class="glow-orb glow-purple" style="width:400px;height:400px;bottom:-15%;right:-10%;"></div>
+  <div class="slide-inner" style="text-align:center;">
     <h2 class="fade-in fade-in-delay-1" style="margin-bottom:16px;">Four Dimensions of<br><span class="gradient-text">Linguistic Scoring</span></h2>
-    <p class="subtitle fade-in fade-in-delay-2" style="margin-bottom:40px;">
+    <p class="subtitle fade-in fade-in-delay-2" style="margin:0 auto 36px;">
       Each sign is evaluated across four key dimensions of ASL, based on reference videos from native Deaf signers.
     </p>
-    <div class="card fade-in fade-in-delay-3" style="padding:28px 36px;">
-      <div class="dim-bar">
-        <div class="dim-label" style="color:#c084fc;">Handshape</div>
-        <div class="dim-track"><div class="dim-fill" style="width:35%;background:linear-gradient(90deg,#c084fc,#a855f7);"></div></div>
-        <div class="dim-pct" style="color:#c084fc;">35%</div>
+    <div class="fade-in fade-in-delay-3" style="position:relative;max-width:340px;margin:0 auto;">
+      <!-- Phone mockup frame -->
+      <div style="background:linear-gradient(145deg,rgba(255,255,255,0.1),rgba(255,255,255,0.03));border:2px solid rgba(255,255,255,0.15);border-radius:32px;padding:12px;box-shadow:0 20px 60px rgba(0,0,0,0.5),0 0 40px rgba(96,165,250,0.15),inset 0 1px 0 rgba(255,255,255,0.1);">
+        <div style="position:relative;overflow:hidden;border-radius:22px;aspect-ratio:9/16;">
+          <video autoplay muted loop playsinline style="position:absolute;top:0;right:0;width:200%;height:100%;object-fit:cover;object-position:right center;">
+            <source src="asl-pal-tips.mp4" type="video/mp4">
+          </video>
+        </div>
       </div>
-      <div style="padding:0 0 12px 136px;font-size:13px;color:var(--text-dim);">
-        45 handshape categories &middot; Camera-invariant curl ratios &middot; Bone-direction vectors &middot; Thumb-to-finger distances
-      </div>
-
-      <div class="dim-bar">
-        <div class="dim-label" style="color:#60a5fa;">Location</div>
-        <div class="dim-track"><div class="dim-fill" style="width:25%;background:linear-gradient(90deg,#60a5fa,#3b82f6);"></div></div>
-        <div class="dim-pct" style="color:#60a5fa;">25%</div>
-      </div>
-      <div style="padding:0 0 12px 136px;font-size:13px;color:var(--text-dim);">
-        Shoulder-normalized wrist positions &middot; Face-contact zone detection (chin vs. forehead) &middot; CNN classifier for gendered signs
-      </div>
-
-      <div class="dim-bar">
-        <div class="dim-label" style="color:#34d399;">Movement</div>
-        <div class="dim-track"><div class="dim-fill" style="width:25%;background:linear-gradient(90deg,#34d399,#10b981);"></div></div>
-        <div class="dim-pct" style="color:#34d399;">25%</div>
-      </div>
-      <div style="padding:0 0 12px 136px;font-size:13px;color:var(--text-dim);">
-        Smoothed unit-direction trajectory vectors &middot; Bidirectional DTW for phase-shifted signing &middot; FPS normalization (30&ndash;1000fps)
-      </div>
-
-      <div class="dim-bar">
-        <div class="dim-label" style="color:#fbbf24;">Orientation</div>
-        <div class="dim-track"><div class="dim-fill" style="width:15%;background:linear-gradient(90deg,#fbbf24,#f59e0b);"></div></div>
-        <div class="dim-pct" style="color:#fbbf24;">15%</div>
-      </div>
-      <div style="padding:0 0 0 136px;font-size:13px;color:var(--text-dim);">
-        Palm-normal cross-product vectors &middot; Camera-angle-forgiving sigma calibration
-      </div>
+      <!-- Floating dimension labels -->
+      <div style="position:absolute;top:15%;left:-120px;background:rgba(192,132,252,0.15);border:1px solid rgba(192,132,252,0.3);border-radius:20px;padding:6px 16px;font-size:13px;font-weight:600;color:#c084fc;backdrop-filter:blur(8px);">Handshape</div>
+      <div style="position:absolute;top:35%;left:-100px;background:rgba(96,165,250,0.15);border:1px solid rgba(96,165,250,0.3);border-radius:20px;padding:6px 16px;font-size:13px;font-weight:600;color:#60a5fa;backdrop-filter:blur(8px);">Location</div>
+      <div style="position:absolute;top:55%;left:-110px;background:rgba(52,211,153,0.15);border:1px solid rgba(52,211,153,0.3);border-radius:20px;padding:6px 16px;font-size:13px;font-weight:600;color:#34d399;backdrop-filter:blur(8px);">Movement</div>
+      <div style="position:absolute;top:75%;left:-120px;background:rgba(251,191,36,0.15);border:1px solid rgba(251,191,36,0.3);border-radius:20px;padding:6px 16px;font-size:13px;font-weight:600;color:#fbbf24;backdrop-filter:blur(8px);">Orientation</div>
     </div>
   </div>
   <div class="slide-num">04 / 12</div>
