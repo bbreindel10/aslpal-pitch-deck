@@ -770,17 +770,17 @@
 
     /* ── App Demo Walkthrough (Slide 5) ──────────── */
     .demo-shell {
-      width: 760px;
-      max-width: 90vw;
+      width: 820px;
+      max-width: 92vw;
       background: #fff;
       border-radius: 16px;
       overflow: hidden;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 40px rgba(96,165,250,0.1);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.35), 0 0 40px rgba(96,165,250,0.08);
       margin: 0 auto;
       position: relative;
+      font-family: 'Albert Sans', sans-serif;
     }
 
-    /* Browser chrome bar */
     .demo-chrome {
       background: #f0f0f3;
       padding: 10px 16px;
@@ -790,11 +790,7 @@
       border-bottom: 1px solid #e0e0e4;
     }
 
-    .demo-chrome-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-    }
+    .demo-chrome-dot { width: 10px; height: 10px; border-radius: 50%; }
 
     .demo-chrome-url {
       flex: 1;
@@ -808,47 +804,236 @@
     }
 
     .demo-viewport {
-      height: 420px;
+      height: 460px;
       position: relative;
       overflow: hidden;
     }
 
-    /* 3 screens stacked, fade between them */
     .demo-screen {
       position: absolute;
       inset: 0;
       opacity: 0;
-      transition: opacity 0.6s ease;
-      overflow-y: auto;
+      overflow: hidden;
     }
 
-    .demo-screen:nth-child(1) { animation: screen1 15s ease-in-out infinite; }
-    .demo-screen:nth-child(2) { animation: screen2 15s ease-in-out infinite; }
-    .demo-screen:nth-child(3) { animation: screen3 15s ease-in-out infinite; }
+    /* 5-screen animation: 35s cycle
+       Screen 1 (Landing):   0-17%   = 0-6s
+       Screen 2 (Dashboard): 20-37%  = 7-13s
+       Screen 3 (Lessons):   40-54%  = 14-19s
+       Screen 4 (Error):     57-74%  = 20-26s
+       Screen 5 (Success):   77-94%  = 27-33s
+    */
+    .demo-screen:nth-child(2) { animation: demoS1 35s ease-in-out infinite; }
+    .demo-screen:nth-child(3) { animation: demoS2 35s ease-in-out infinite; }
+    .demo-screen:nth-child(4) { animation: demoS3 35s ease-in-out infinite; }
+    .demo-screen:nth-child(5) { animation: demoS4 35s ease-in-out infinite; }
+    .demo-screen:nth-child(6) { animation: demoS5 35s ease-in-out infinite; }
 
-    @keyframes screen1 {
-      0%,5%   { opacity: 0; }
-      8%,28%  { opacity: 1; }
-      33%     { opacity: 0; }
-      100%    { opacity: 0; }
+    @keyframes demoS1 {
+      0%,2%    { opacity: 0; }
+      5%,15%   { opacity: 1; }
+      18%      { opacity: 0; }
+      100%     { opacity: 0; }
     }
-    @keyframes screen2 {
-      0%,30%  { opacity: 0; }
-      35%,58% { opacity: 1; }
-      63%     { opacity: 0; }
-      100%    { opacity: 0; }
+    @keyframes demoS2 {
+      0%,18%   { opacity: 0; }
+      22%,34%  { opacity: 1; }
+      38%      { opacity: 0; }
+      100%     { opacity: 0; }
     }
-    @keyframes screen3 {
-      0%,60%  { opacity: 0; }
-      65%,90% { opacity: 1; }
-      95%     { opacity: 0; }
+    @keyframes demoS3 {
+      0%,38%   { opacity: 0; }
+      42%,52%  { opacity: 1; }
+      56%      { opacity: 0; }
+      100%     { opacity: 0; }
+    }
+    @keyframes demoS4 {
+      0%,56%   { opacity: 0; }
+      60%,72%  { opacity: 1; }
+      76%      { opacity: 0; }
+      100%     { opacity: 0; }
+    }
+    @keyframes demoS5 {
+      0%,76%   { opacity: 0; }
+      80%,92%  { opacity: 1; }
+      96%      { opacity: 0; }
+      100%     { opacity: 0; }
+    }
+
+    /* ── Screen 1: Landing Page ── */
+    .demo-landing {
+      background: #ffffff;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .demo-landing-header {
+      padding: 12px 42px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(255,255,255,0.7);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(0,0,0,0.04);
+    }
+
+    .demo-landing-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .demo-landing-logo svg { width: 44px; height: 44px; }
+
+    .demo-landing-logo-text {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+
+    .demo-landing-logo-name {
+      color: #101464;
+      font-weight: 900;
+      font-size: 17px;
+      line-height: 1;
+    }
+
+    .demo-landing-logo-name sup {
+      font-size: 0.5em;
+      font-weight: 600;
+      vertical-align: super;
+      margin-left: 1px;
+    }
+
+    .demo-landing-tagline {
+      color: #6200b5;
+      font-size: 11px;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .demo-landing-btns {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .demo-landing-btn-signin {
+      padding: 8px 18px;
+      border-radius: 24px;
+      font-size: 12px;
+      font-weight: 500;
+      color: #fff;
+      background: #1a1f7a;
+      border: none;
+    }
+
+    .demo-landing-btn-start {
+      padding: 8px 18px;
+      border-radius: 24px;
+      font-size: 12px;
+      font-weight: 500;
+      color: #fff;
+      background: #6200b5;
+      border: none;
+    }
+
+    .demo-landing-hero {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 0 40px;
+      text-align: center;
+    }
+
+    .demo-hero-title {
+      font-size: 42px;
+      font-weight: 700;
+      color: #101464;
+      line-height: 1;
+      margin-bottom: 28px;
+    }
+
+    .demo-hero-title span {
+      display: block;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: heroFade 35s ease-in-out infinite;
+    }
+    .demo-hero-title span:nth-child(1) { animation-delay: 0.8s; }
+    .demo-hero-title span:nth-child(2) { animation-delay: 1.1s; }
+    .demo-hero-title span:nth-child(3) { animation-delay: 1.4s; }
+
+    @keyframes heroFade {
+      0%,1%   { opacity: 0; transform: translateY(20px); }
+      4%,14%  { opacity: 1; transform: translateY(0); }
+      17%     { opacity: 0; transform: translateY(0); }
       100%    { opacity: 0; }
     }
 
-    /* Screen 1: Dashboard */
+    .demo-hero-cta {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .demo-hero-cta-btn {
+      padding: 12px 28px;
+      border-radius: 24px;
+      font-size: 14px;
+      font-weight: 500;
+      color: #fff;
+      background: #6200b5;
+      border: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .demo-hero-cta-btn svg { width: 16px; height: 16px; fill: #fff; }
+
+    .demo-hero-sub {
+      font-size: 13px;
+      color: rgba(5,5,3,0.6);
+      max-width: 170px;
+      line-height: 1.4;
+    }
+
+    .demo-hero-sub strong { color: #1f1f2f; }
+    .demo-hero-sub a { color: #6200b5; text-decoration: underline; }
+
+    .demo-landing-feature {
+      padding: 16px 42px;
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      background: #fafafe;
+      border-top: 1px solid rgba(0,0,0,0.04);
+    }
+
+    .demo-landing-feat-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #6200b5;
+      margin-bottom: 4px;
+    }
+
+    .demo-landing-feat-desc {
+      font-size: 11px;
+      color: rgba(31,31,47,0.6);
+      line-height: 1.5;
+      max-width: 400px;
+    }
+
+    /* ── Screen 2: Dashboard ── */
     .demo-dash {
       background: #fafafe;
-      padding: 32px 40px;
+      padding: 28px 36px;
+      height: 100%;
     }
 
     .demo-dash-nav {
@@ -856,14 +1041,14 @@
       flex-direction: column;
       gap: 4px;
       position: absolute;
-      left: 16px;
+      left: 14px;
       top: 50%;
       transform: translateY(-50%);
     }
 
     .demo-dash-nav-item {
-      width: 36px;
-      height: 36px;
+      width: 34px;
+      height: 34px;
       border-radius: 99px;
       display: flex;
       align-items: center;
@@ -881,31 +1066,30 @@
       font-size: 22px;
       font-weight: 700;
       color: #1f1f2f;
-      margin-bottom: 20px;
-      margin-left: 48px;
+      margin-bottom: 16px;
+      margin-left: 44px;
     }
 
     .demo-dash-search {
-      margin-left: 48px;
+      margin-left: 44px;
       max-width: 320px;
-      background: #fff;
-      border: 1px solid rgba(36,36,66,0.2);
+      background: rgba(0,0,77,0.05);
+      border: 1.5px solid transparent;
       border-radius: 12px;
-      padding: 8px 14px;
+      padding: 10px 16px;
       font-size: 13px;
-      color: #999;
-      margin-bottom: 24px;
+      color: rgba(5,5,3,0.6);
+      margin-bottom: 20px;
     }
 
     .demo-level-card {
-      margin-left: 48px;
-      border-radius: 20px;
-      padding: 28px 32px;
+      margin-left: 44px;
+      border-radius: 28px;
+      padding: 24px 28px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 14px;
-      cursor: pointer;
+      margin-bottom: 10px;
       position: relative;
     }
 
@@ -913,7 +1097,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      border-radius: 20px;
+      border-radius: 28px;
       border: 2px solid transparent;
       transition: border-color 0.3s;
     }
@@ -922,49 +1106,47 @@
       font-size: 14px;
       font-weight: 700;
       color: #1f1f2f;
-      margin-bottom: 4px;
+      margin-bottom: 3px;
     }
 
     .demo-level-sub {
-      font-size: 12px;
+      font-size: 11px;
       color: rgba(31,31,47,0.6);
     }
 
     .demo-level-btn {
-      padding: 6px 16px;
-      border-radius: 99px;
+      padding: 7px 18px;
+      border-radius: 24px;
       font-size: 12px;
       font-weight: 700;
       color: #fff;
       border: none;
     }
 
-    /* Pulse highlight on level 1 */
     .demo-level-card.highlight::after {
-      animation: pulseHighlight 15s ease-in-out infinite;
+      animation: pulseHighlight 35s ease-in-out infinite;
     }
 
     @keyframes pulseHighlight {
-      0%,12%  { border-color: transparent; }
-      16%,26% { border-color: #6200b5; }
-      30%     { border-color: transparent; }
-      100%    { border-color: transparent; }
+      0%,22%   { border-color: transparent; }
+      26%,34%  { border-color: #6200b5; }
+      38%      { border-color: transparent; }
+      100%     { border-color: transparent; }
     }
 
-    /* Screen 2: Lesson list */
+    /* ── Screen 3: Lesson list ── */
     .demo-lessons {
       background: linear-gradient(180deg, #d5e8fd 0%, #eef4ff 40%, #fafafe 100%);
       padding: 0;
+      height: 100%;
     }
 
-    .demo-lessons-hero {
-      padding: 24px 40px 20px;
-    }
+    .demo-lessons-hero { padding: 22px 36px 16px; }
 
     .demo-lessons-back {
       font-size: 12px;
       color: rgba(31,31,47,0.6);
-      margin-bottom: 12px;
+      margin-bottom: 10px;
       display: flex;
       align-items: center;
       gap: 4px;
@@ -974,35 +1156,37 @@
       font-size: 20px;
       font-weight: 700;
       color: #1f1f2f;
-      margin-bottom: 4px;
+      margin-bottom: 3px;
     }
 
     .demo-lessons-sub {
-      font-size: 13px;
+      font-size: 12px;
       color: rgba(31,31,47,0.6);
-      margin-bottom: 16px;
+      margin-bottom: 14px;
     }
 
     .demo-unit-label {
-      padding: 0 40px;
-      font-size: 12px;
+      padding: 0 36px;
+      font-size: 11px;
       font-weight: 600;
       color: rgba(31,31,47,0.5);
-      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      margin-bottom: 8px;
     }
 
     .demo-lesson-list {
-      padding: 0 40px 24px;
+      padding: 0 36px 20px;
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 6px;
     }
 
     .demo-lesson-item {
-      background: #fff;
-      border: 1px solid #fff;
+      background: rgba(255,255,255,0.9);
+      border: 1px solid rgba(255,255,255,0.9);
       border-radius: 12px;
-      padding: 14px 16px 14px 20px;
+      padding: 13px 16px 13px 18px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -1018,9 +1202,13 @@
       color: rgba(31,31,47,0.5);
     }
 
+    .demo-lesson-item.completed {
+      opacity: 0.65;
+    }
+
     .demo-lesson-btn {
-      padding: 5px 14px;
-      border-radius: 99px;
+      padding: 6px 16px;
+      border-radius: 24px;
       font-size: 11px;
       font-weight: 700;
       color: #fff;
@@ -1033,7 +1221,11 @@
       color: rgba(31,31,47,0.4);
     }
 
-    /* Pulse highlight on thank you */
+    .demo-lesson-btn.done {
+      background: #ccc;
+      color: #888;
+    }
+
     .demo-lesson-item.highlight {
       position: relative;
     }
@@ -1044,77 +1236,387 @@
       inset: -2px;
       border-radius: 14px;
       border: 2px solid transparent;
-      animation: pulseLesson 15s ease-in-out infinite;
+      animation: pulseLesson 35s ease-in-out infinite;
     }
 
     @keyframes pulseLesson {
-      0%,40%  { border-color: transparent; }
-      44%,56% { border-color: #6200b5; }
-      60%     { border-color: transparent; }
-      100%    { border-color: transparent; }
+      0%,42%   { border-color: transparent; }
+      46%,52%  { border-color: #6200b5; }
+      56%      { border-color: transparent; }
+      100%     { border-color: transparent; }
     }
 
-    /* Screen 3: Thank You lesson */
-    .demo-lesson-view {
-      background: linear-gradient(180deg, #d5e8fd 0%, #fafafe 30%);
-      padding: 20px 40px;
-      display: flex;
-      gap: 24px;
+    /* ── Screen 4: Practice Error ── */
+    .demo-practice {
+      background: #fafafe;
       height: 100%;
-    }
-
-    .demo-lesson-left {
-      flex: 1;
       display: flex;
       flex-direction: column;
     }
 
-    .demo-lesson-back {
-      font-size: 12px;
-      color: rgba(31,31,47,0.6);
-      margin-bottom: 12px;
+    .demo-practice-header {
+      padding: 12px 24px;
       display: flex;
       align-items: center;
-      gap: 4px;
+      gap: 14px;
+      border-bottom: 1px solid rgba(36,36,66,0.08);
     }
 
-    .demo-lesson-sign-title {
-      padding: 6px 16px;
-      border: 1.5px solid #1f1f2f;
-      border-radius: 12px;
-      font-size: 14px;
-      font-weight: 700;
-      color: #1f1f2f;
-      text-transform: lowercase;
-      display: inline-block;
-      margin-bottom: 16px;
-    }
-
-    .demo-lesson-video {
-      flex: 1;
-      background: #000;
-      border-radius: 12px;
-      overflow: hidden;
+    .demo-practice-close {
+      width: 36px;
+      height: 36px;
+      border-radius: 24px;
+      border: 1px solid rgba(36,36,66,0.15);
+      background: #fff;
       display: flex;
       align-items: center;
       justify-content: center;
-      min-height: 200px;
+      font-size: 16px;
+      color: #1f1f2f;
     }
 
-    .demo-lesson-video video {
-      width: 100%;
+    .demo-practice-progress {
+      flex: 1;
+      height: 6px;
+      background: rgba(0,0,77,0.05);
+      border-radius: 99px;
+      overflow: hidden;
+    }
+
+    .demo-practice-bar {
       height: 100%;
-      object-fit: cover;
+      border-radius: 99px;
+      background: #6200b5;
+      width: 60%;
     }
 
-    .demo-lesson-right {
-      width: 260px;
-      flex-shrink: 0;
+    .demo-practice-body {
+      flex: 1;
+      display: flex;
+      gap: 0;
+      overflow: hidden;
+    }
+
+    .demo-practice-main {
+      flex: 1;
       display: flex;
       flex-direction: column;
+      padding: 16px 24px;
     }
 
-    .demo-tips-box {
+    .demo-practice-sidebar {
+      width: 280px;
+      border-left: 1px solid rgba(36,36,66,0.08);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .demo-practice-sidebar-close {
+      font-size: 14px;
+      color: #999;
+      align-self: flex-end;
+      margin-bottom: 12px;
+      cursor: pointer;
+    }
+
+    .demo-practice-instruction {
+      font-size: 15px;
+      color: #1f1f2f;
+      line-height: 1.5;
+      margin-bottom: 16px;
+    }
+
+    .demo-practice-camera {
+      flex: 1;
+      border-radius: 28px;
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 220px;
+    }
+
+    .demo-practice-camera-bg {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, #2d1b69, #1a1a2e);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .demo-camera-silhouette {
+      width: 100px;
+      height: 120px;
+      opacity: 0.15;
+    }
+
+    .demo-camera-silhouette circle { fill: #fff; }
+    .demo-camera-silhouette ellipse { fill: #fff; }
+
+    .demo-camera-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+    }
+
+    .demo-camera-recording {
+      position: absolute;
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 20px;
+      border-radius: 24px;
+      background: rgba(36,36,66,0.1);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      color: rgba(255,255,255,0.9);
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .demo-recording-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #ef4444;
+      animation: recBlink 1s ease-in-out infinite;
+    }
+
+    @keyframes recBlink {
+      0%,100% { opacity: 1; }
+      50%     { opacity: 0.3; }
+    }
+
+    /* Score results overlay */
+    .demo-score-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(250,250,254,0.95);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+    }
+
+    .demo-score-card {
+      background: #fff;
+      border-radius: 24px;
+      padding: 24px 28px;
+      width: 300px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+      text-align: center;
+    }
+
+    .demo-score-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #1f1f2f;
+      margin-bottom: 4px;
+    }
+
+    .demo-score-subtitle {
+      font-size: 12px;
+      color: rgba(31,31,47,0.6);
+      margin-bottom: 16px;
+    }
+
+    .demo-score-circle-wrap {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+
+    .demo-score-circle {
+      width: 110px;
+      height: 110px;
+      position: relative;
+    }
+
+    .demo-score-circle svg {
+      width: 100%;
+      height: 100%;
+      transform: rotate(-90deg);
+    }
+
+    .demo-score-circle-bg {
+      fill: none;
+      stroke: #e5e5ea;
+      stroke-width: 8;
+    }
+
+    .demo-score-circle-fill {
+      fill: none;
+      stroke-width: 8;
+      stroke-linecap: round;
+    }
+
+    .demo-score-circle-fill.error {
+      stroke: url(#scoreGradError);
+    }
+
+    .demo-score-circle-fill.success {
+      stroke: url(#scoreGradSuccess);
+    }
+
+    .demo-score-pct {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .demo-score-pct-num {
+      font-size: 28px;
+      font-weight: 700;
+      color: #1f1f2f;
+    }
+
+    .demo-score-pct-label {
+      font-size: 11px;
+      color: #888;
+    }
+
+    .demo-score-dims {
+      background: #f8f8fc;
+      border-radius: 12px;
+      padding: 12px 16px;
+      margin-bottom: 14px;
+    }
+
+    .demo-score-dim {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 6px 0;
+      font-size: 12px;
+      color: #1f1f2f;
+    }
+
+    .demo-score-dim + .demo-score-dim {
+      border-top: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .demo-score-dim-label {
+      font-weight: 500;
+    }
+
+    .demo-score-dim-val {
+      font-weight: 700;
+    }
+
+    .demo-score-dim-val.good { color: #038749; }
+    .demo-score-dim-val.bad { color: #b11701; }
+
+    .demo-score-error-msg {
+      background: rgba(177,23,1,0.05);
+      border-radius: 10px;
+      padding: 10px 14px;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      text-align: left;
+    }
+
+    .demo-score-error-icon {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #b11701;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .demo-score-error-text {
+      font-size: 12px;
+      color: #b11701;
+      line-height: 1.5;
+    }
+
+    .demo-score-error-text strong {
+      font-weight: 700;
+    }
+
+    .demo-score-btn-retry {
+      width: 100%;
+      padding: 10px;
+      border-radius: 24px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #fff;
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      border: none;
+      text-align: center;
+    }
+
+    /* ── Screen 5: Success ── */
+    .demo-success-card .demo-score-title { color: #038749; }
+
+    .demo-score-success-msg {
+      background: rgba(3,135,73,0.08);
+      border-radius: 10px;
+      padding: 10px 14px;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .demo-score-success-icon {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #038749;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .demo-score-success-text {
+      font-size: 12px;
+      color: #038749;
+      font-weight: 600;
+    }
+
+    .demo-score-btn-next {
+      width: 100%;
+      padding: 10px;
+      border-radius: 24px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #fff;
+      background: linear-gradient(135deg, #038749, #5dbf6f);
+      border: none;
+      text-align: center;
+    }
+
+    /* Tips in sidebar */
+    .demo-side-tips-box {
       background: #fff;
       border: 1px solid rgba(0,0,77,0.08);
       border-radius: 12px;
@@ -1122,97 +1624,96 @@
       display: flex;
       flex-direction: column;
       box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      overflow: hidden;
     }
 
-    .demo-tips-title {
-      padding: 14px 16px 10px;
-      font-size: 14px;
+    .demo-side-tips-title {
+      padding: 12px 14px 8px;
+      font-size: 13px;
       font-weight: 800;
       color: #1f1f2f;
     }
 
-    .demo-tips-content {
-      padding: 0 16px 16px;
+    .demo-side-tips-content {
+      padding: 0 14px 12px;
       flex: 1;
     }
 
-    .demo-tips-num {
-      font-size: 14px;
+    .demo-side-tips-num {
+      font-size: 13px;
       font-weight: 800;
       color: #1f1f2f;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
-    .demo-tips-text {
-      font-size: 12px;
+    .demo-side-tips-text {
+      font-size: 11px;
       color: #555;
-      line-height: 1.6;
+      line-height: 1.5;
     }
 
-    .demo-tips-img {
-      margin-top: 8px;
-      width: 80px;
-      border-radius: 8px;
+    .demo-side-tips-img {
+      margin-top: 6px;
+      width: 65px;
+      border-radius: 6px;
     }
 
-    .demo-tips-dots {
-      padding: 10px 16px 14px;
+    .demo-side-tips-dots {
+      padding: 6px 14px 10px;
       display: flex;
       justify-content: center;
       gap: 4px;
     }
 
-    .demo-tips-dot {
-      width: 6px;
-      height: 6px;
+    .demo-side-tips-dot {
+      width: 5px;
+      height: 5px;
       border-radius: 50%;
       background: rgba(36,36,66,0.2);
     }
 
-    .demo-tips-dot.active {
-      background: #6200b5;
-    }
+    .demo-side-tips-dot.active { background: #6200b5; }
 
-    .demo-record-btn {
-      margin-top: 12px;
-      width: 100%;
-      padding: 10px;
-      border-radius: 99px;
-      background: linear-gradient(135deg, #6200b5, #8383f7);
-      color: #fff;
-      font-size: 13px;
-      font-weight: 700;
-      border: none;
-      text-align: center;
-    }
-
-    /* Click cursor animation */
+    /* Cursor */
     .demo-cursor {
       position: absolute;
-      width: 24px;
-      height: 24px;
+      width: 22px;
+      height: 22px;
       pointer-events: none;
-      z-index: 10;
+      z-index: 20;
     }
 
     .demo-cursor svg {
-      width: 24px;
-      height: 24px;
+      width: 22px;
+      height: 22px;
       filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
     }
 
-    .demo-cursor { animation: cursorMove 15s ease-in-out infinite; }
+    .demo-cursor { animation: cursorMove 35s ease-in-out infinite; }
 
     @keyframes cursorMove {
-      0%,8%   { left: 50%; top: 45%; opacity: 0; }
-      12%     { left: 50%; top: 45%; opacity: 1; }
-      22%,25% { left: 55%; top: 32%; opacity: 1; }
-      28%     { left: 55%; top: 32%; opacity: 0; transform: scale(0.9); }
-      30%,38% { opacity: 0; }
-      40%     { left: 40%; top: 68%; opacity: 1; }
-      50%,53% { left: 40%; top: 68%; opacity: 1; }
-      56%     { left: 40%; top: 68%; opacity: 0; transform: scale(0.9); }
-      58%,100% { opacity: 0; }
+      /* Landing: hover over "Get started" btn */
+      0%,3%   { left: 46%; top: 58%; opacity: 0; }
+      6%      { left: 46%; top: 58%; opacity: 1; }
+      12%,14% { left: 46%; top: 58%; opacity: 1; }
+      16%     { left: 46%; top: 58%; opacity: 0; transform: scale(0.92); }
+      /* Dashboard: click Level 1 */
+      18%,22% { opacity: 0; }
+      24%     { left: 55%; top: 38%; opacity: 1; }
+      30%,32% { left: 55%; top: 38%; opacity: 1; }
+      34%     { left: 55%; top: 38%; opacity: 0; transform: scale(0.92); }
+      /* Lessons: click Thank You */
+      36%,42% { opacity: 0; }
+      44%     { left: 40%; top: 58%; opacity: 1; }
+      48%,50% { left: 40%; top: 58%; opacity: 1; }
+      52%     { left: 40%; top: 58%; opacity: 0; transform: scale(0.92); }
+      /* Error: hover over retry */
+      54%,60% { opacity: 0; }
+      62%     { left: 52%; top: 78%; opacity: 1; }
+      68%,70% { left: 52%; top: 78%; opacity: 1; }
+      72%     { left: 52%; top: 78%; opacity: 0; transform: scale(0.92); }
+      /* Success: done */
+      74%,100% { opacity: 0; }
     }
   </style>
 </head>
@@ -1440,17 +1941,30 @@
     <div class="slide-label fade-in">App Walkthrough</div>
     <h2 class="fade-in fade-in-delay-1" style="margin-bottom:12px;">See ASL Pal in Action</h2>
     <p class="subtitle fade-in fade-in-delay-2" style="margin:0 auto 36px;">
-      From the dashboard, select a level, choose a sign, and start practicing with real-time tips and feedback.
+      Browse the homepage, select a lesson, practice signing, get real-time feedback, and improve.
     </p>
     <div class="fade-in fade-in-delay-3">
       <div class="demo-shell">
-        <!-- Browser chrome -->
         <div class="demo-chrome">
           <div class="demo-chrome-dot" style="background:#ff5f57;"></div>
           <div class="demo-chrome-dot" style="background:#ffbd2e;"></div>
           <div class="demo-chrome-dot" style="background:#28c840;"></div>
-          <div class="demo-chrome-url">aslpal.dawnsignpress.com</div>
+          <div class="demo-chrome-url">aslpal.com</div>
         </div>
+
+        <!-- SVG gradients for score circles -->
+        <svg width="0" height="0" style="position:absolute;">
+          <defs>
+            <linearGradient id="scoreGradError" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#ef4444"/>
+              <stop offset="100%" stop-color="#f97316"/>
+            </linearGradient>
+            <linearGradient id="scoreGradSuccess" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#038749"/>
+              <stop offset="100%" stop-color="#5dbf6f"/>
+            </linearGradient>
+          </defs>
+        </svg>
 
         <div class="demo-viewport">
           <!-- Animated cursor -->
@@ -1458,7 +1972,49 @@
             <svg viewBox="0 0 24 24" fill="#fff" stroke="#333" stroke-width="1"><path d="M5 3l14 9-7 2-4 7z"/></svg>
           </div>
 
-          <!-- Screen 1: Dashboard -->
+          <!-- ── Screen 1: Landing Page ── -->
+          <div class="demo-screen demo-landing">
+            <div class="demo-landing-header">
+              <div class="demo-landing-logo">
+                <svg width="44" height="44" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M26.0303 16.7511C26.9688 15.1255 29.0474 14.5686 30.6729 15.5071C32.2984 16.4456 32.8554 18.5241 31.9169 20.1497L17.9698 44.3068C17.5276 45.0726 16.8326 45.6012 16.051 45.848C14.5442 46.3657 12.8334 45.7629 12.0069 44.3313L4.42039 31.1911C4.18988 30.7918 4.32667 30.2813 4.72592 30.0508C7.57773 28.4043 11.2243 29.3814 12.8708 32.2332L14.7407 35.4719L15.3099 35.3194L26.0303 16.7511Z" fill="#1F1F2F"/>
+                  <rect x="29.0781" y="43.2324" width="6.79723" height="36.0012" rx="3.39861" transform="rotate(-150 29.0781 43.2324)" fill="#1F1F2F"/>
+                  <rect x="40.0039" y="42.4688" width="6.79723" height="25.8634" rx="3.39861" transform="rotate(-150 40.0039 42.4688)" fill="#1F1F2F"/>
+                  <rect x="45.1562" y="51.6897" width="6.79723" height="22.2081" rx="3.39861" transform="rotate(-150 45.1562 51.6897)" fill="#1F1F2F"/>
+                </svg>
+                <div class="demo-landing-logo-text">
+                  <span class="demo-landing-logo-name">ASL Pal<sup>&trade;</sup></span>
+                  <span class="demo-landing-tagline">Connection starts with language</span>
+                </div>
+              </div>
+              <div class="demo-landing-btns">
+                <div class="demo-landing-btn-signin">Sign in</div>
+                <div class="demo-landing-btn-start">Get started for free</div>
+              </div>
+            </div>
+            <div class="demo-landing-hero">
+              <div class="demo-hero-title">
+                <span>Learn ASL</span>
+                <span>the right way,</span>
+                <span>every time.</span>
+              </div>
+              <div class="demo-hero-cta">
+                <div class="demo-hero-cta-btn">
+                  Get started for free
+                  <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M13.125 10.75H4.75c-.21 0-.39-.07-.53-.21a.72.72 0 010-1.07c.14-.15.32-.22.53-.22h8.38l-3.67-3.67c-.15-.15-.22-.33-.22-.53s.08-.38.23-.54c.15-.15.33-.22.53-.22s.38.08.53.23l4.95 4.96c.08.08.13.16.17.25.03.09.05.18.05.28s-.02.19-.05.28c-.03.09-.08.17-.16.24l-4.96 4.96c-.15.15-.33.23-.52.22a.73.73 0 01-.52-.23.68.68 0 010-1.09l3.65-3.65z" fill="currentColor"/></svg>
+                </div>
+                <div class="demo-hero-sub"><strong>Get 3 free lessons,<br>then <a>choose your plan</a></strong></div>
+              </div>
+            </div>
+            <div class="demo-landing-feature">
+              <div>
+                <div class="demo-landing-feat-title">Groundbreaking Interactive Learning</div>
+                <div class="demo-landing-feat-desc">Practice through guided, interactive lessons with real-time AI feedback on your signs.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── Screen 2: Dashboard ── -->
           <div class="demo-screen demo-dash">
             <div class="demo-dash-nav">
               <div class="demo-dash-nav-item active">&#9673;</div>
@@ -1467,30 +2023,30 @@
             </div>
             <div class="demo-dash-welcome">Welcome, Sarah</div>
             <div class="demo-dash-search">&#128269; Search for a sign...</div>
-            <div class="demo-level-card highlight" style="background:linear-gradient(135deg,#d5e8fd,#eef4ff);">
+            <div class="demo-level-card highlight" style="background: radial-gradient(182% 161% at 6% 130%, #6596ff 0%, #d5e8fd 80%), radial-gradient(192% 152% at 113% -12%, #6596ff 0%, #d5e8fd 61%), #d5e8fd;">
               <div>
                 <div class="demo-level-title">Level 1</div>
                 <div class="demo-level-sub">Foundations, Interactions &amp; Basic Questions</div>
               </div>
               <div class="demo-level-btn" style="background:#450242;">Continue</div>
             </div>
-            <div class="demo-level-card" style="background:linear-gradient(135deg,#f1eaff,#f8f4ff);">
+            <div class="demo-level-card" style="background: radial-gradient(182% 161% at 6% 130%, #8383f7 0%, #f1eaff 80%), #f1eaff;">
               <div>
                 <div class="demo-level-title">Level 2</div>
                 <div class="demo-level-sub">Family, Descriptions &amp; Daily Routines</div>
               </div>
               <div class="demo-level-btn" style="background:#091257;">Start</div>
             </div>
-            <div class="demo-level-card" style="background:linear-gradient(135deg,#e4fae8,#f2faf4);">
+            <div class="demo-level-card" style="background: radial-gradient(182% 161% at 6% 130%, #5dbf6f 0%, #e4fae8 80%), #e4fae8;">
               <div>
                 <div class="demo-level-title">Level 3</div>
                 <div class="demo-level-sub">Community, Culture &amp; Storytelling</div>
               </div>
-              <div class="demo-level-btn locked" style="background:rgba(36,36,66,0.1);color:rgba(31,31,47,0.4);">Locked</div>
+              <div class="demo-level-btn" style="background:rgba(36,36,66,0.1);color:rgba(31,31,47,0.4);">Locked</div>
             </div>
           </div>
 
-          <!-- Screen 2: Lesson List -->
+          <!-- ── Screen 3: Lesson List ── -->
           <div class="demo-screen demo-lessons">
             <div class="demo-lessons-hero">
               <div class="demo-lessons-back">&#8592; Back to Dashboard</div>
@@ -1499,13 +2055,13 @@
             </div>
             <div class="demo-unit-label">Unit 1 &mdash; Greetings &amp; Introductions</div>
             <div class="demo-lesson-list">
-              <div class="demo-lesson-item" style="opacity:0.7;">
+              <div class="demo-lesson-item completed">
                 <span>&#10003;&ensp;hello</span>
-                <div class="demo-lesson-btn" style="background:#ccc;color:#888;">Practice</div>
+                <div class="demo-lesson-btn done">Practice</div>
               </div>
-              <div class="demo-lesson-item" style="opacity:0.7;">
+              <div class="demo-lesson-item completed">
                 <span>&#10003;&ensp;my name is</span>
-                <div class="demo-lesson-btn" style="background:#ccc;color:#888;">Practice</div>
+                <div class="demo-lesson-btn done">Practice</div>
               </div>
               <div class="demo-lesson-item highlight">
                 <span>&#9654;&ensp;thank you</span>
@@ -1522,35 +2078,178 @@
             </div>
           </div>
 
-          <!-- Screen 3: Thank You Lesson View -->
-          <div class="demo-screen demo-lesson-view">
-            <div class="demo-lesson-left">
-              <div class="demo-lesson-back">&#8592; Back to Level 1</div>
-              <div class="demo-lesson-sign-title">how to sign thank you</div>
-              <div class="demo-lesson-video">
-                <video autoplay muted loop playsinline>
-                  <source src="https://stream.mux.com/I41th00wjQK200jSLleNFFxMgGIsTMKw0156XMGs8dSQCw/high.mp4" type="video/mp4">
-                </video>
-              </div>
+          <!-- ── Screen 4: Practice + Error State ── -->
+          <div class="demo-screen demo-practice">
+            <div class="demo-practice-header">
+              <div class="demo-practice-close">&times;</div>
+              <div class="demo-practice-progress"><div class="demo-practice-bar" style="width:60%;"></div></div>
             </div>
-            <div class="demo-lesson-right">
-              <div class="demo-tips-box">
-                <div class="demo-tips-title">Tips for success</div>
-                <div class="demo-tips-content">
-                  <div class="demo-tips-num">1. Handshape</div>
-                  <div class="demo-tips-text">
-                    Use the OPEN B handshape.
-                    <br><img class="demo-tips-img" src="https://cdn.sanity.io/images/x0fhtlkx/production/ec8a9fc7b88d55d85539f20b3bf9d696d17c3091-446x446.gif" alt="OPEN B">
+            <div class="demo-practice-body">
+              <div class="demo-practice-main">
+                <div class="demo-practice-camera">
+                  <div class="demo-practice-camera-bg">
+                    <svg class="demo-camera-silhouette" viewBox="0 0 100 120">
+                      <circle cx="50" cy="35" r="20"/>
+                      <ellipse cx="50" cy="90" rx="32" ry="28"/>
+                    </svg>
+                  </div>
+                  <div class="demo-camera-recording">
+                    <div class="demo-recording-dot"></div>
+                    Recording...
                   </div>
                 </div>
-                <div class="demo-tips-dots">
-                  <div class="demo-tips-dot active"></div>
-                  <div class="demo-tips-dot"></div>
-                  <div class="demo-tips-dot"></div>
-                  <div class="demo-tips-dot"></div>
+              </div>
+              <div class="demo-practice-sidebar">
+                <div class="demo-practice-instruction">
+                  Review the reference video and tips, then record your sign for <strong>Thank You</strong>.
+                </div>
+                <div class="demo-side-tips-box">
+                  <div class="demo-side-tips-title">Tips for success</div>
+                  <div class="demo-side-tips-content">
+                    <div class="demo-side-tips-num">1. Handshape</div>
+                    <div class="demo-side-tips-text">
+                      Use the OPEN B handshape.
+                      <br><img class="demo-side-tips-img" src="https://cdn.sanity.io/images/x0fhtlkx/production/ec8a9fc7b88d55d85539f20b3bf9d696d17c3091-446x446.gif" alt="OPEN B">
+                    </div>
+                  </div>
+                  <div class="demo-side-tips-dots">
+                    <div class="demo-side-tips-dot active"></div>
+                    <div class="demo-side-tips-dot"></div>
+                    <div class="demo-side-tips-dot"></div>
+                    <div class="demo-side-tips-dot"></div>
+                  </div>
                 </div>
               </div>
-              <div class="demo-record-btn">&#9679; Record Your Sign</div>
+              <!-- Error score overlay -->
+              <div class="demo-score-overlay">
+                <div class="demo-score-card">
+                  <div class="demo-score-title">Keep Practicing!</div>
+                  <div class="demo-score-subtitle">Thank You &mdash; Attempt 1</div>
+                  <div class="demo-score-circle-wrap">
+                    <div class="demo-score-circle">
+                      <svg viewBox="0 0 120 120">
+                        <circle class="demo-score-circle-bg" cx="60" cy="60" r="52"/>
+                        <circle class="demo-score-circle-fill error" cx="60" cy="60" r="52"
+                          stroke-dasharray="327" stroke-dashoffset="131"/>
+                      </svg>
+                      <div class="demo-score-pct">
+                        <span class="demo-score-pct-num">60%</span>
+                        <span class="demo-score-pct-label">3 / 5</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="demo-score-dims">
+                    <div class="demo-score-dim">
+                      <span class="demo-score-dim-label">Handshape</span>
+                      <span class="demo-score-dim-val bad">45%</span>
+                    </div>
+                    <div class="demo-score-dim">
+                      <span class="demo-score-dim-label">Movement</span>
+                      <span class="demo-score-dim-val good">88%</span>
+                    </div>
+                    <div class="demo-score-dim">
+                      <span class="demo-score-dim-label">Location</span>
+                      <span class="demo-score-dim-val good">92%</span>
+                    </div>
+                    <div class="demo-score-dim">
+                      <span class="demo-score-dim-label">Orientation</span>
+                      <span class="demo-score-dim-val good">85%</span>
+                    </div>
+                  </div>
+                  <div class="demo-score-error-msg">
+                    <div class="demo-score-error-icon">!</div>
+                    <div class="demo-score-error-text">
+                      <strong>Check your handshape.</strong><br>
+                      This sign uses the OPEN B handshape. Make sure all fingers are extended and together.
+                    </div>
+                  </div>
+                  <div class="demo-score-btn-retry">Try Again</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── Screen 5: Success State ── -->
+          <div class="demo-screen demo-practice">
+            <div class="demo-practice-header">
+              <div class="demo-practice-close">&times;</div>
+              <div class="demo-practice-progress"><div class="demo-practice-bar" style="width:80%;"></div></div>
+            </div>
+            <div class="demo-practice-body">
+              <div class="demo-practice-main">
+                <div class="demo-practice-camera">
+                  <div class="demo-practice-camera-bg" style="background:linear-gradient(135deg, #1a3a2e, #1a2e1a);">
+                    <svg class="demo-camera-silhouette" viewBox="0 0 100 120">
+                      <circle cx="50" cy="35" r="20"/>
+                      <ellipse cx="50" cy="90" rx="32" ry="28"/>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+              <div class="demo-practice-sidebar">
+                <div class="demo-practice-instruction">
+                  Great work! You nailed the <strong>Thank You</strong> sign.
+                </div>
+                <div class="demo-side-tips-box">
+                  <div class="demo-side-tips-title">Tips for success</div>
+                  <div class="demo-side-tips-content">
+                    <div class="demo-side-tips-num">1. Handshape</div>
+                    <div class="demo-side-tips-text">
+                      Use the OPEN B handshape.
+                      <br><img class="demo-side-tips-img" src="https://cdn.sanity.io/images/x0fhtlkx/production/ec8a9fc7b88d55d85539f20b3bf9d696d17c3091-446x446.gif" alt="OPEN B">
+                    </div>
+                  </div>
+                  <div class="demo-side-tips-dots">
+                    <div class="demo-side-tips-dot active"></div>
+                    <div class="demo-side-tips-dot"></div>
+                    <div class="demo-side-tips-dot"></div>
+                    <div class="demo-side-tips-dot"></div>
+                  </div>
+                </div>
+              </div>
+              <!-- Success score overlay -->
+              <div class="demo-score-overlay">
+                <div class="demo-score-card demo-success-card">
+                  <div class="demo-score-title">Great Job!</div>
+                  <div class="demo-score-subtitle">Thank You &mdash; Attempt 2</div>
+                  <div class="demo-score-circle-wrap">
+                    <div class="demo-score-circle">
+                      <svg viewBox="0 0 120 120">
+                        <circle class="demo-score-circle-bg" cx="60" cy="60" r="52"/>
+                        <circle class="demo-score-circle-fill success" cx="60" cy="60" r="52"
+                          stroke-dasharray="327" stroke-dashoffset="33"/>
+                      </svg>
+                      <div class="demo-score-pct">
+                        <span class="demo-score-pct-num" style="color:#038749;">90%</span>
+                        <span class="demo-score-pct-label">5 / 5</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="demo-score-dims">
+                    <div class="demo-score-dim">
+                      <span class="demo-score-dim-label">Handshape</span>
+                      <span class="demo-score-dim-val good">87%</span>
+                    </div>
+                    <div class="demo-score-dim">
+                      <span class="demo-score-dim-label">Movement</span>
+                      <span class="demo-score-dim-val good">94%</span>
+                    </div>
+                    <div class="demo-score-dim">
+                      <span class="demo-score-dim-label">Location</span>
+                      <span class="demo-score-dim-val good">91%</span>
+                    </div>
+                    <div class="demo-score-dim">
+                      <span class="demo-score-dim-label">Orientation</span>
+                      <span class="demo-score-dim-val good">88%</span>
+                    </div>
+                  </div>
+                  <div class="demo-score-success-msg">
+                    <div class="demo-score-success-icon">&#10003;</div>
+                    <div class="demo-score-success-text">All dimensions passed! Nice improvement.</div>
+                  </div>
+                  <div class="demo-score-btn-next">Continue to Next Lesson</div>
+                </div>
+              </div>
             </div>
           </div>
 
