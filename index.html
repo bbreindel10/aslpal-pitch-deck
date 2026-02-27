@@ -768,6 +768,23 @@
       84%,100%  { background: rgba(36,36,66,0.2); }
     }
 
+    /* ── Rocket Launch Animation (Slide 12) ──────── */
+    @keyframes rocketLaunch {
+      0%   { transform: translateY(0) rotate(0deg); opacity: 1; }
+      50%  { transform: translateY(-60px) rotate(-15deg); opacity: 1; }
+      70%  { transform: translateY(-120px) rotate(-20deg); opacity: 0.8; }
+      85%  { transform: translateY(-40px) rotate(-5deg); opacity: 1; }
+      100% { transform: translateY(0) rotate(0deg); opacity: 1; }
+    }
+    .rocket-icon {
+      display: inline-block;
+      animation: rocketLaunch 1.5s ease-out forwards;
+      animation-play-state: paused;
+    }
+    .slide.active .rocket-icon {
+      animation-play-state: running;
+    }
+
     /* ── App Demo Walkthrough (Slide 5) ──────────── */
     .demo-video-outline {
       width: 760px;
@@ -1356,7 +1373,7 @@
     </div>
 
     <div class="fade-in fade-in-delay-4" style="margin-top:64px;">
-      <div style="font-size:32px;font-weight:800;color:#c084fc;letter-spacing:1px;">Launching Spring 2026</div>
+      <div style="font-size:32px;font-weight:800;color:#c084fc;letter-spacing:1px;">Launching Spring 2026 <span class="rocket-icon">🚀</span></div>
     </div>
   </div>
   <div class="slide-num">12 / 12</div>
@@ -1389,6 +1406,10 @@
         // Update nav dots
         const idx = Array.from(slides).indexOf(entry.target);
         dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+        // Mark slide active (for rocket animation)
+        entry.target.classList.add('active');
+      } else {
+        entry.target.classList.remove('active');
       }
     });
   }, { threshold: 0.5 });
