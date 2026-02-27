@@ -605,8 +605,8 @@
       border: none;
       background: rgba(255,255,255,0.12);
       border-radius: 6px;
-      font-size: 11px;
-      font-weight: 600;
+      font-size: 14px;
+      font-weight: 700;
       color: #fff;
       text-transform: lowercase;
       flex: 1;
@@ -647,19 +647,19 @@
       display: flex;
       width: 400%; /* 4 slides */
       height: 100%;
-      animation: tipsSlide 16s ease-in-out infinite;
+      animation: tipsSlide 24s ease-in-out infinite;
     }
 
     @keyframes tipsSlide {
       0%    { transform: translateX(0); }
-      8%    { transform: translateX(0); }
-      17%   { transform: translateX(-25%); }
-      28%   { transform: translateX(-25%); }
-      37%   { transform: translateX(-50%); }
-      48%   { transform: translateX(-50%); }
-      57%   { transform: translateX(-75%); }
-      72%   { transform: translateX(-75%); }
-      83%   { transform: translateX(0); }
+      25%   { transform: translateX(0); }       /* slide 1 stays 6s for GIF */
+      30%   { transform: translateX(-25%); }    /* slide 2 */
+      42%   { transform: translateX(-25%); }
+      47%   { transform: translateX(-50%); }    /* slide 3 */
+      59%   { transform: translateX(-50%); }
+      64%   { transform: translateX(-75%); }    /* slide 4 */
+      76%   { transform: translateX(-75%); }
+      84%   { transform: translateX(0); }       /* back to 1 */
       100%  { transform: translateX(0); }
     }
 
@@ -691,9 +691,9 @@
 
     /* Embedded image (handshape GIF) */
     .tips-slide-img {
-      margin-top: 14px;
+      margin-top: 10px;
       border-radius: 8px;
-      max-width: 100%;
+      max-width: 120px;
       height: auto;
     }
 
@@ -742,30 +742,30 @@
     }
 
     /* Animate dots to match current slide */
-    .tips-dot:nth-child(1) { animation: td1 16s ease-in-out infinite; }
-    .tips-dot:nth-child(2) { animation: td2 16s ease-in-out infinite; }
-    .tips-dot:nth-child(3) { animation: td3 16s ease-in-out infinite; }
-    .tips-dot:nth-child(4) { animation: td4 16s ease-in-out infinite; }
+    .tips-dot:nth-child(1) { animation: td1 24s ease-in-out infinite; }
+    .tips-dot:nth-child(2) { animation: td2 24s ease-in-out infinite; }
+    .tips-dot:nth-child(3) { animation: td3 24s ease-in-out infinite; }
+    .tips-dot:nth-child(4) { animation: td4 24s ease-in-out infinite; }
 
     @keyframes td1 {
-      0%,8%     { background: #6200b5; }
-      17%,82%   { background: rgba(36,36,66,0.2); }
-      83%,100%  { background: #6200b5; }
+      0%,25%    { background: #6200b5; }
+      30%,83%   { background: rgba(36,36,66,0.2); }
+      84%,100%  { background: #6200b5; }
     }
     @keyframes td2 {
-      0%,16%    { background: rgba(36,36,66,0.2); }
-      17%,28%   { background: #6200b5; }
-      37%,100%  { background: rgba(36,36,66,0.2); }
+      0%,29%    { background: rgba(36,36,66,0.2); }
+      30%,42%   { background: #6200b5; }
+      47%,100%  { background: rgba(36,36,66,0.2); }
     }
     @keyframes td3 {
-      0%,36%    { background: rgba(36,36,66,0.2); }
-      37%,48%   { background: #6200b5; }
-      57%,100%  { background: rgba(36,36,66,0.2); }
+      0%,46%    { background: rgba(36,36,66,0.2); }
+      47%,59%   { background: #6200b5; }
+      64%,100%  { background: rgba(36,36,66,0.2); }
     }
     @keyframes td4 {
-      0%,56%    { background: rgba(36,36,66,0.2); }
-      57%,82%   { background: #6200b5; }
-      83%,100%  { background: rgba(36,36,66,0.2); }
+      0%,63%    { background: rgba(36,36,66,0.2); }
+      64%,83%   { background: #6200b5; }
+      84%,100%  { background: rgba(36,36,66,0.2); }
     }
   </style>
 </head>
