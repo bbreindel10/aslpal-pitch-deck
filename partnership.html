@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ASL Pal - Partner With Us</title>
+  <link href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Albert Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(180deg, #ece5ff 0%, #ddd4f7 25%, #cdc3f0 50%, #e8e2fc 75%, #ffffff 100%);
+      background-attachment: fixed;
+      color: #1f1f2f;
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    /* Header */
+    .header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .logo-icon {
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo-icon svg {
+      width: 44px;
+      height: 44px;
+    }
+
+    .logo-text {
+      font-size: 26px;
+      font-weight: 700;
+      color: #1f1f2f;
+      letter-spacing: -0.5px;
+    }
+
+    .header h1 {
+      font-size: 36px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      margin-bottom: 10px;
+      color: #1f1f2f;
+    }
+
+    .header p {
+      font-size: 17px;
+      color: rgba(31, 31, 47, 0.6);
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    /* Card */
+    .form-card {
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-radius: 24px;
+      padding: 40px 36px;
+      box-shadow: 0 4px 32px rgba(98, 0, 181, 0.08), 0 1px 6px rgba(0, 0, 0, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+    }
+
+    /* Progress indicator */
+    .progress-bar {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 36px;
+    }
+
+    .progress-step {
+      flex: 1;
+      height: 4px;
+      background: rgba(98, 0, 181, 0.1);
+      border-radius: 4px;
+      transition: background 0.4s ease;
+    }
+
+    .progress-step.active {
+      background: #6200b5;
+    }
+
+    /* Form */
+    .partner-form {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    /* Section titles */
+    .section-title {
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: #6200b5;
+      margin-bottom: -12px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .form-group label {
+      font-size: 15px;
+      font-weight: 600;
+      color: #1f1f2f;
+    }
+
+    .form-group .hint {
+      font-size: 13px;
+      color: rgba(31, 31, 47, 0.5);
+      margin-top: -4px;
+    }
+
+    .required {
+      color: #b11701;
+      font-weight: 400;
+      margin-left: 2px;
+    }
+
+    .optional {
+      color: rgba(31, 31, 47, 0.4);
+      font-weight: 400;
+      font-size: 13px;
+      margin-left: 6px;
+    }
+
+    /* Partnership type chips */
+    .chip-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .chip-group input {
+      display: none;
+    }
+
+    .chip-group label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 20px;
+      border-radius: 100px;
+      border: 1.5px solid rgba(31, 31, 47, 0.15);
+      font-size: 14px;
+      font-weight: 500;
+      color: rgba(31, 31, 47, 0.7);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      user-select: none;
+      background: #fff;
+    }
+
+    .chip-group label:hover {
+      border-color: #6200b5;
+      color: #6200b5;
+      background: #f8f5ff;
+    }
+
+    .chip-group input:checked + label {
+      background: #6200b5;
+      border-color: #6200b5;
+      color: #ffffff;
+    }
+
+    .chip-icon {
+      font-size: 15px;
+    }
+
+    /* Interest chips - multi-select */
+    .interest-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .interest-group input {
+      display: none;
+    }
+
+    .interest-group label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      border-radius: 10px;
+      border: 1.5px solid rgba(31, 31, 47, 0.12);
+      font-size: 13px;
+      font-weight: 500;
+      color: rgba(31, 31, 47, 0.6);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      user-select: none;
+      background: #fff;
+    }
+
+    .interest-group label:hover {
+      border-color: #6200b5;
+      color: #6200b5;
+    }
+
+    .interest-group input:checked + label {
+      background: #f0eafc;
+      border-color: #6200b5;
+      color: #6200b5;
+    }
+
+    .interest-group input:checked + label::before {
+      content: "\2713 ";
+      font-weight: 700;
+    }
+
+    /* Text inputs */
+    input[type="text"],
+    input[type="email"],
+    input[type="url"],
+    input[type="tel"],
+    textarea,
+    select {
+      width: 100%;
+      padding: 14px 16px;
+      background: #f8f7fc;
+      border: 1.5px solid rgba(31, 31, 47, 0.12);
+      border-radius: 12px;
+      color: #1f1f2f;
+      font-size: 15px;
+      font-family: inherit;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+      outline: none;
+    }
+
+    input[type="text"]:hover,
+    input[type="email"]:hover,
+    input[type="url"]:hover,
+    input[type="tel"]:hover,
+    textarea:hover,
+    select:hover {
+      border-color: rgba(31, 31, 47, 0.25);
+    }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="url"]:focus,
+    input[type="tel"]:focus,
+    textarea:focus,
+    select:focus {
+      border-color: #6200b5;
+      box-shadow: 0 0 0 3px rgba(98, 0, 181, 0.1);
+      background: #ffffff;
+    }
+
+    input[type="text"]::placeholder,
+    input[type="email"]::placeholder,
+    input[type="url"]::placeholder,
+    input[type="tel"]::placeholder,
+    textarea::placeholder {
+      color: rgba(31, 31, 47, 0.35);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 130px;
+    }
+
+    select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1.5l5 5 5-5' stroke='%231f1f2f' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 16px center;
+      padding-right: 40px;
+      cursor: pointer;
+    }
+
+    /* Two-column row */
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    /* Divider */
+    .divider {
+      height: 1px;
+      background: rgba(31, 31, 47, 0.08);
+      margin: 4px 0;
+    }
+
+    /* Character counter */
+    .textarea-wrapper {
+      position: relative;
+    }
+
+    .char-count {
+      position: absolute;
+      bottom: 10px;
+      right: 14px;
+      font-size: 11px;
+      color: rgba(31, 31, 47, 0.3);
+      pointer-events: none;
+    }
+
+    .char-count.near-limit {
+      color: #e67e00;
+    }
+
+    .char-count.at-limit {
+      color: #b11701;
+    }
+
+    /* Submit button */
+    .submit-btn {
+      width: 100%;
+      padding: 16px 32px;
+      background: #6200b5;
+      border: none;
+      border-radius: 24px;
+      color: #ffffff;
+      font-size: 16px;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      margin-top: 8px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .submit-btn:hover {
+      background: #8f31a4;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(98, 0, 181, 0.25);
+    }
+
+    .submit-btn:active {
+      transform: translateY(0);
+    }
+
+    .submit-btn:disabled {
+      background: rgba(31, 31, 47, 0.15);
+      color: rgba(31, 31, 47, 0.4);
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .submit-btn .btn-text {
+      transition: opacity 0.2s ease;
+    }
+
+    .submit-btn.loading .btn-text {
+      opacity: 0;
+    }
+
+    .submit-btn .spinner {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 22px;
+      height: 22px;
+      border: 2.5px solid rgba(255, 255, 255, 0.3);
+      border-top-color: #fff;
+      border-radius: 50%;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    .submit-btn.loading .spinner {
+      opacity: 1;
+      animation: spin 0.7s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+
+    /* Privacy note */
+    .privacy-note {
+      text-align: center;
+      font-size: 12px;
+      color: rgba(31, 31, 47, 0.4);
+      margin-top: -4px;
+    }
+
+    .privacy-note a {
+      color: #6200b5;
+      text-decoration: none;
+    }
+
+    .privacy-note a:hover {
+      text-decoration: underline;
+    }
+
+    /* Success state */
+    .success-message {
+      display: none;
+      text-align: center;
+      padding: 60px 24px;
+    }
+
+    .success-message.show {
+      display: block;
+      animation: fadeInUp 0.5s ease;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .success-icon {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, #6200b5, #8f31a4);
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 40px;
+      margin-bottom: 24px;
+      color: #fff;
+      box-shadow: 0 8px 24px rgba(98, 0, 181, 0.2);
+    }
+
+    .success-message h2 {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: #1f1f2f;
+    }
+
+    .success-message p {
+      font-size: 16px;
+      color: rgba(31, 31, 47, 0.6);
+      margin-bottom: 32px;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .success-actions {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 12px 24px;
+      background: #f8f7fc;
+      border: 1.5px solid rgba(31, 31, 47, 0.12);
+      border-radius: 12px;
+      color: #1f1f2f;
+      font-size: 14px;
+      font-weight: 500;
+      font-family: inherit;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .back-btn:hover {
+      border-color: #6200b5;
+      color: #6200b5;
+      background: #f0eafc;
+    }
+
+    /* Validation */
+    .form-group.error input,
+    .form-group.error textarea {
+      border-color: #b11701;
+    }
+
+    .form-group .error-text {
+      font-size: 12px;
+      color: #b11701;
+      display: none;
+    }
+
+    .form-group.error .error-text {
+      display: block;
+    }
+
+    /* Landing / CTA screen */
+    .landing {
+      text-align: center;
+      padding: 48px 24px;
+    }
+
+    .landing-illustration {
+      margin-bottom: 20px;
+    }
+
+    .landing-illustration svg {
+      width: 72px;
+      height: 72px;
+    }
+
+    .landing h2 {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: #1f1f2f;
+    }
+
+    .landing p {
+      font-size: 15px;
+      color: rgba(31, 31, 47, 0.55);
+      max-width: 380px;
+      margin: 0 auto 28px;
+    }
+
+    .landing .start-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 36px;
+      background: #6200b5;
+      border: none;
+      border-radius: 24px;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .landing .start-btn:hover {
+      background: #8f31a4;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(98, 0, 181, 0.25);
+    }
+
+    .landing .start-btn:active {
+      transform: translateY(0);
+    }
+
+    /* Hidden state for form */
+    .form-hidden {
+      display: none !important;
+    }
+
+    /* Fade-in animation for form reveal */
+    .form-reveal {
+      animation: fadeInUp 0.4s ease;
+    }
+
+    /* Benefits section */
+    .benefits {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    .benefit-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 14px;
+      background: #f8f7fc;
+      border-radius: 12px;
+      border: 1px solid rgba(98, 0, 181, 0.06);
+    }
+
+    .benefit-icon {
+      font-size: 20px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .benefit-text {
+      font-size: 13px;
+      font-weight: 500;
+      color: rgba(31, 31, 47, 0.7);
+      line-height: 1.4;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      margin-top: 40px;
+      padding: 20px;
+    }
+
+    .footer p {
+      font-size: 13px;
+      color: rgba(31, 31, 47, 0.35);
+    }
+
+    .footer a {
+      color: #6200b5;
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .container {
+        padding: 32px 16px 60px;
+      }
+
+      .form-card {
+        padding: 28px 20px;
+        border-radius: 18px;
+      }
+
+      .header h1 {
+        font-size: 28px;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .benefits {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <a href="https://aslpalsupport.com" class="logo" style="text-decoration:none;">
+        <div class="logo-icon" aria-hidden="true"><svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M26.0303 16.7511C26.9688 15.1255 29.0474 14.5686 30.6729 15.5071C32.2984 16.4456 32.8554 18.5241 31.9169 20.1497L17.9698 44.3068C17.5276 45.0726 16.8326 45.6012 16.051 45.848C14.5442 46.3657 12.8334 45.7629 12.0069 44.3313L4.42039 31.1911C4.18988 30.7918 4.32667 30.2813 4.72592 30.0508C7.57773 28.4043 11.2243 29.3814 12.8708 32.2332L14.7407 35.4719L15.3099 35.3194L26.0303 16.7511Z" fill="#1F1F2F"/><rect x="29.0781" y="43.2324" width="6.79723" height="36.0012" rx="3.39861" transform="rotate(-150 29.0781 43.2324)" fill="#1F1F2F"/><rect x="40.0039" y="42.4688" width="6.79723" height="25.8634" rx="3.39861" transform="rotate(-150 40.0039 42.4688)" fill="#1F1F2F"/><rect x="45.1562" y="51.6897" width="6.79723" height="22.2081" rx="3.39861" transform="rotate(-150 45.1562 51.6897)" fill="#1F1F2F"/></svg></div>
+        <span class="logo-text">ASL Pal</span>
+      </a>
+      <h1>Partner With Us</h1>
+      <p>Join us in making ASL education more accessible. Let's build something meaningful together.</p>
+    </div>
+
+    <div class="form-card">
+      <!-- Landing screen (shown first) -->
+      <div class="landing" id="landingScreen">
+        <div class="landing-illustration"><svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M26.0303 16.7511C26.9688 15.1255 29.0474 14.5686 30.6729 15.5071C32.2984 16.4456 32.8554 18.5241 31.9169 20.1497L17.9698 44.3068C17.5276 45.0726 16.8326 45.6012 16.051 45.848C14.5442 46.3657 12.8334 45.7629 12.0069 44.3313L4.42039 31.1911C4.18988 30.7918 4.32667 30.2813 4.72592 30.0508C7.57773 28.4043 11.2243 29.3814 12.8708 32.2332L14.7407 35.4719L15.3099 35.3194L26.0303 16.7511Z" fill="#6200b5"/><rect x="29.0781" y="43.2324" width="6.79723" height="36.0012" rx="3.39861" transform="rotate(-150 29.0781 43.2324)" fill="#6200b5"/><rect x="40.0039" y="42.4688" width="6.79723" height="25.8634" rx="3.39861" transform="rotate(-150 40.0039 42.4688)" fill="#6200b5"/><rect x="45.1562" y="51.6897" width="6.79723" height="22.2081" rx="3.39861" transform="rotate(-150 45.1562 51.6897)" fill="#6200b5"/></svg></div>
+        <h2>Why partner with ASL Pal?</h2>
+        <p>We're looking for organizations, educators, and businesses who share our mission to expand ASL education.</p>
+        <div class="benefits">
+          <div class="benefit-item">
+            <span class="benefit-text">Reach thousands of ASL learners and educators</span>
+          </div>
+          <div class="benefit-item">
+            <span class="benefit-text">Co-create content and learning experiences</span>
+          </div>
+          <div class="benefit-item">
+            <span class="benefit-text">Expand accessibility for the Deaf community</span>
+          </div>
+          <div class="benefit-item">
+            <span class="benefit-text">Grow your brand alongside a trusted platform</span>
+          </div>
+        </div>
+        <button class="start-btn" style="margin-top: 28px;" onclick="showForm()">Get Started &#8594;</button>
+      </div>
+
+      <!-- Progress bar (hidden initially) -->
+      <div class="progress-bar form-hidden" id="progressBar">
+        <div class="progress-step active"></div>
+        <div class="progress-step"></div>
+        <div class="progress-step"></div>
+        <div class="progress-step"></div>
+      </div>
+
+      <form class="partner-form form-hidden" id="partnerForm" novalidate>
+
+        <!-- Section 1: Partnership Type -->
+        <span class="section-title">Partnership Details</span>
+
+        <div class="form-group">
+          <label>What type of partnership are you interested in?<span class="required">*</span></label>
+          <div class="chip-group" id="partnerTypeGroup">
+            <input type="radio" name="partnerType" value="educational" id="typeEducational">
+            <label for="typeEducational">Educational</label>
+
+            <input type="radio" name="partnerType" value="corporate" id="typeCorporate">
+            <label for="typeCorporate">Corporate</label>
+
+            <input type="radio" name="partnerType" value="nonprofit" id="typeNonprofit">
+            <label for="typeNonprofit">Nonprofit</label>
+
+            <input type="radio" name="partnerType" value="content" id="typeContent">
+            <label for="typeContent">Content Creator</label>
+
+            <input type="radio" name="partnerType" value="reseller" id="typeReseller">
+            <label for="typeReseller">Reseller</label>
+
+            <input type="radio" name="partnerType" value="other" id="typeOther">
+            <label for="typeOther">Other</label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>What areas interest you?<span class="optional">optional</span></label>
+          <p class="hint">Select all that apply</p>
+          <div class="interest-group">
+            <input type="checkbox" name="interests" value="bulk-licensing" id="intLicensing">
+            <label for="intLicensing">Bulk Licensing</label>
+
+            <input type="checkbox" name="interests" value="co-branding" id="intBranding">
+            <label for="intBranding">Co-Branding</label>
+
+            <input type="checkbox" name="interests" value="curriculum" id="intCurriculum">
+            <label for="intCurriculum">Curriculum Integration</label>
+
+            <input type="checkbox" name="interests" value="content-collab" id="intContent">
+            <label for="intContent">Content Collaboration</label>
+
+            <input type="checkbox" name="interests" value="events" id="intEvents">
+            <label for="intEvents">Events &amp; Workshops</label>
+
+            <input type="checkbox" name="interests" value="sponsorship" id="intSponsorship">
+            <label for="intSponsorship">Sponsorship</label>
+
+            <input type="checkbox" name="interests" value="api-access" id="intAPI">
+            <label for="intAPI">API / Integration</label>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Section 2: Proposal -->
+        <span class="section-title">Your Proposal</span>
+
+        <div class="form-group" id="proposalGroup">
+          <label for="proposal">Tell us about your partnership idea<span class="required">*</span></label>
+          <div class="textarea-wrapper">
+            <textarea id="proposal" name="proposal" placeholder="Describe how you'd like to work together, what your goals are, and how this partnership could benefit ASL learners..." required maxlength="3000"></textarea>
+            <span class="char-count" id="charCount">0 / 3,000</span>
+          </div>
+          <span class="error-text">Please describe your partnership idea before submitting.</span>
+        </div>
+
+        <div class="form-group">
+          <label for="audience">Who is your target audience?<span class="optional">optional</span></label>
+          <select id="audience" name="audience">
+            <option value="" disabled selected>Select an audience</option>
+            <option value="k12">K-12 Students</option>
+            <option value="higher-ed">Higher Education</option>
+            <option value="corporate">Corporate / Workplace</option>
+            <option value="community">Community Organizations</option>
+            <option value="general">General Public</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="timeline">When would you like to start?<span class="optional">optional</span></label>
+          <select id="timeline" name="timeline">
+            <option value="" disabled selected>Select a timeline</option>
+            <option value="asap">As soon as possible</option>
+            <option value="1-3months">1 – 3 months</option>
+            <option value="3-6months">3 – 6 months</option>
+            <option value="6plus">6+ months</option>
+            <option value="exploring">Just exploring</option>
+          </select>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Section 3: About You / Organization -->
+        <span class="section-title">About You</span>
+
+        <div class="form-row">
+          <div class="form-group" id="nameGroup">
+            <label for="contactName">Full name<span class="required">*</span></label>
+            <input type="text" id="contactName" name="contactName" placeholder="Your full name" required>
+            <span class="error-text">Please enter your name.</span>
+          </div>
+          <div class="form-group" id="emailGroup">
+            <label for="email">Email<span class="required">*</span></label>
+            <input type="email" id="email" name="email" placeholder="you@organization.com" required>
+            <span class="error-text">Please enter a valid email address.</span>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="orgName">Organization<span class="optional">optional</span></label>
+            <input type="text" id="orgName" name="orgName" placeholder="Your company or organization">
+          </div>
+          <div class="form-group">
+            <label for="role">Your role<span class="optional">optional</span></label>
+            <input type="text" id="role" name="role" placeholder="e.g. Director, Teacher, CEO">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="phone">Phone<span class="optional">optional</span></label>
+            <input type="tel" id="phone" name="phone" placeholder="(555) 123-4567">
+          </div>
+          <div class="form-group">
+            <label for="website">Website<span class="optional">optional</span></label>
+            <input type="url" id="website" name="website" placeholder="https://yoursite.com">
+          </div>
+        </div>
+
+        <button type="submit" class="submit-btn" id="submitBtn">
+          <span class="btn-text">Submit Partnership Inquiry</span>
+          <span class="spinner"></span>
+        </button>
+
+        <p class="privacy-note">Your inquiry is sent to <a href="mailto:partnerships@aslpal.com"><strong>partnerships@aslpal.com</strong></a>. We'll review and respond within 2 business days.</p>
+
+      </form>
+
+      <!-- Success message -->
+      <div class="success-message" id="successMessage">
+        <div class="success-icon">&#10003;</div>
+        <h2>Inquiry received!</h2>
+        <p>Thank you for your interest in partnering with ASL Pal. Our team will review your proposal and get back to you within 2 business days.</p>
+        <div class="success-actions">
+          <button class="back-btn" onclick="resetForm()">&#8634; Submit another inquiry</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <p>&copy; 2026 ASL Pal &middot; <a href="https://aslpalsupport.com">aslpalsupport.com</a></p>
+    </div>
+  </div>
+
+  <script>
+    // Show form when user clicks the CTA
+    function showForm() {
+      document.getElementById('landingScreen').style.display = 'none';
+      document.getElementById('progressBar').classList.remove('form-hidden');
+      document.getElementById('progressBar').classList.add('form-reveal');
+      document.getElementById('partnerForm').classList.remove('form-hidden');
+      document.getElementById('partnerForm').classList.add('form-reveal');
+    }
+
+    // Progress bar tracking
+    const progressSteps = document.querySelectorAll('.progress-step');
+    const form = document.getElementById('partnerForm');
+
+    function updateProgress() {
+      const partnerType = document.querySelector('input[name="partnerType"]:checked');
+      const proposal = document.getElementById('proposal').value.trim();
+      const name = document.getElementById('contactName').value.trim();
+      const email = document.getElementById('email').value.trim();
+
+      let filled = 0;
+      if (partnerType) filled++;
+      if (proposal) filled++;
+      if (name) filled++;
+      if (email) filled++;
+
+      progressSteps.forEach((step, i) => {
+        step.classList.toggle('active', i < filled);
+      });
+    }
+
+    // Listen to all inputs for progress updates
+    form.addEventListener('input', updateProgress);
+    form.addEventListener('change', updateProgress);
+
+    // Character counter
+    const proposalTextarea = document.getElementById('proposal');
+    const charCount = document.getElementById('charCount');
+
+    proposalTextarea.addEventListener('input', () => {
+      const len = proposalTextarea.value.length;
+      charCount.textContent = `${len.toLocaleString()} / 3,000`;
+      charCount.classList.toggle('near-limit', len >= 2400 && len < 3000);
+      charCount.classList.toggle('at-limit', len >= 3000);
+    });
+
+    // Form validation and submission
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      // Clear previous errors
+      document.querySelectorAll('.form-group.error').forEach(g => g.classList.remove('error'));
+
+      let hasError = false;
+
+      // Validate partnership type
+      if (!document.querySelector('input[name="partnerType"]:checked')) {
+        // Scroll to partner type section
+        document.getElementById('partnerTypeGroup').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        hasError = true;
+      }
+
+      // Validate proposal
+      if (!proposalTextarea.value.trim()) {
+        document.getElementById('proposalGroup').classList.add('error');
+        hasError = true;
+      }
+
+      // Validate name
+      if (!document.getElementById('contactName').value.trim()) {
+        document.getElementById('nameGroup').classList.add('error');
+        hasError = true;
+      }
+
+      // Validate email
+      const emailInput = document.getElementById('email');
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailPattern.test(emailInput.value.trim())) {
+        document.getElementById('emailGroup').classList.add('error');
+        hasError = true;
+      }
+
+      if (hasError) {
+        const firstError = document.querySelector('.form-group.error');
+        if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+
+      // Collect form data
+      const interests = [];
+      document.querySelectorAll('input[name="interests"]:checked').forEach(cb => interests.push(cb.value));
+
+      const formData = {
+        partner_type: document.querySelector('input[name="partnerType"]:checked')?.value || '',
+        interests: interests,
+        proposal: proposalTextarea.value.trim(),
+        audience: document.getElementById('audience').value,
+        timeline: document.getElementById('timeline').value,
+        contact_name: document.getElementById('contactName').value.trim(),
+        email: emailInput.value.trim(),
+        organization: document.getElementById('orgName').value.trim(),
+        role: document.getElementById('role').value.trim(),
+        phone: document.getElementById('phone').value.trim(),
+        website: document.getElementById('website').value.trim(),
+        submitted_at: new Date().toISOString()
+      };
+
+      console.log('Partnership inquiry submitted:', formData);
+
+      // Show loading state
+      const submitBtn = document.getElementById('submitBtn');
+      submitBtn.classList.add('loading');
+      submitBtn.disabled = true;
+
+      // Simulate network request — replace with your real endpoint
+      setTimeout(() => {
+        submitBtn.classList.remove('loading');
+        form.classList.add('form-hidden');
+        document.getElementById('progressBar').classList.add('form-hidden');
+        document.getElementById('successMessage').classList.add('show');
+      }, 1200);
+    });
+
+    function resetForm() {
+      form.reset();
+      // Hide everything and go back to landing
+      document.getElementById('successMessage').classList.remove('show');
+      form.classList.add('form-hidden');
+      form.classList.remove('form-reveal');
+      document.getElementById('progressBar').classList.add('form-hidden');
+      document.getElementById('progressBar').classList.remove('form-reveal');
+      document.getElementById('landingScreen').style.display = 'block';
+      document.querySelectorAll('.form-group.error').forEach(g => g.classList.remove('error'));
+      charCount.textContent = '0 / 3,000';
+      charCount.className = 'char-count';
+      progressSteps.forEach(step => step.classList.remove('active'));
+      progressSteps[0].classList.add('active');
+      document.getElementById('submitBtn').disabled = false;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>
