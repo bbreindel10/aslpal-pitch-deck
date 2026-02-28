@@ -1568,13 +1568,18 @@
 
 <!-- ═══════════════ PASSWORD GATE SCRIPT ═══════════════ -->
 <script>
-  // SHA-256 hash of the password
-  const HASH = 'daf6c4f7e23ecb115234aa2facec91603ba4d4cdc8b937d2861fff554c7adeaf';
-
-  async function sha256(str) {
-    const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
-    return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
+  // Simple hash function that works on HTTP (no crypto.subtle needed)
+  function simpleHash(str) {
+    let h = 0;
+    for (let i = 0; i < str.length; i++) {
+      const c = str.charCodeAt(i);
+      h = ((h << 5) - h) + c;
+      h |= 0;
+    }
+    return h.toString(36);
   }
+
+  const HASH = simpleHash('boom26!');
 
   // Check if already unlocked this session
   if (sessionStorage.getItem('pw_ok') === '1') {
@@ -1584,11 +1589,10 @@
     document.body.style.overflow = 'hidden';
   }
 
-  async function checkPw(e) {
+  function checkPw(e) {
     e.preventDefault();
     const val = document.getElementById('pwInput').value;
-    const hash = await sha256(val);
-    if (hash === HASH) {
+    if (simpleHash(val) === HASH) {
       sessionStorage.setItem('pw_ok', '1');
       document.getElementById('pwGate').classList.add('hidden');
       document.body.style.overflow = '';
