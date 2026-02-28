@@ -37,6 +37,67 @@
       -webkit-font-smoothing: antialiased;
     }
 
+    /* ── Password Gate ───────────────────────────── */
+    .pw-gate {
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+      background: var(--bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .pw-gate.hidden { display: none; }
+    .pw-gate h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .pw-gate p {
+      color: var(--text-dim);
+      font-size: 1rem;
+    }
+    .pw-gate form {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+    .pw-gate input[type="password"] {
+      padding: 14px 20px;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(255,255,255,0.12);
+      background: var(--bg-card);
+      color: var(--text);
+      font-family: inherit;
+      font-size: 1rem;
+      outline: none;
+      width: 260px;
+      transition: border-color 0.2s;
+    }
+    .pw-gate input[type="password"]:focus {
+      border-color: var(--purple);
+    }
+    .pw-gate button {
+      padding: 14px 28px;
+      border-radius: var(--radius-sm);
+      border: none;
+      background: var(--purple);
+      color: #fff;
+      font-family: inherit;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .pw-gate button:hover { background: var(--purple-light); }
+    .pw-gate .pw-error {
+      color: var(--accent-rose);
+      font-size: 0.9rem;
+      min-height: 1.2em;
+    }
+
     /* ── Slide System ─────────────────────────────── */
     .slide {
       min-height: 100vh;
@@ -857,6 +918,17 @@
 </head>
 <body>
 
+<!-- ═══════════════ PASSWORD GATE ═══════════════ -->
+<div class="pw-gate" id="pwGate">
+  <h1>ASL Pal</h1>
+  <p>Enter the password to view this deck</p>
+  <form id="pwForm" onsubmit="return checkPw(event)">
+    <input type="password" id="pwInput" placeholder="Password" autofocus>
+    <button type="submit">Enter</button>
+  </form>
+  <div class="pw-error" id="pwError"></div>
+</div>
+
 <!-- ═══════════════ LOGO BAR ═══════════════ -->
 <div class="logo-bar">
   <div class="logo-mark">
@@ -1483,6 +1555,40 @@
       slides[currentIdx - 1].scrollIntoView({ behavior: 'smooth' });
     }
   });
+</script>
+
+<!-- ═══════════════ PASSWORD GATE SCRIPT ═══════════════ -->
+<script>
+  // SHA-256 hash of the password
+  const HASH = 'daf6c4f7e23ecb115234aa2facec91603ba4d4cdc8b937d2861fff554c7adeaf';
+
+  async function sha256(str) {
+    const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+    return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
+  }
+
+  // Check if already unlocked this session
+  if (sessionStorage.getItem('pw_ok') === '1') {
+    document.getElementById('pwGate').classList.add('hidden');
+    document.body.style.overflow = '';
+  } else {
+    document.body.style.overflow = 'hidden';
+  }
+
+  async function checkPw(e) {
+    e.preventDefault();
+    const val = document.getElementById('pwInput').value;
+    const hash = await sha256(val);
+    if (hash === HASH) {
+      sessionStorage.setItem('pw_ok', '1');
+      document.getElementById('pwGate').classList.add('hidden');
+      document.body.style.overflow = '';
+    } else {
+      document.getElementById('pwError').textContent = 'Incorrect password';
+      document.getElementById('pwInput').value = '';
+      document.getElementById('pwInput').focus();
+    }
+  }
 </script>
 
 </body>
