@@ -1567,12 +1567,27 @@
 
   // ── Play/pause videos on scroll into view ──
   const demoVideos = document.querySelectorAll('.demo-video-outline video');
+  const visibleVideos = new Set();
+
+  function tryPlay(video) {
+    if (!visibleVideos.has(video)) return;
+    video.play().catch(() => {});
+  }
+
+  demoVideos.forEach(v => {
+    v.addEventListener('canplay', () => tryPlay(v));
+    v.addEventListener('loadeddata', () => tryPlay(v));
+  });
+
   const videoObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       const video = entry.target;
       if (entry.isIntersecting) {
-        video.play().catch(() => {});
+        visibleVideos.add(video);
+        video.load();
+        tryPlay(video);
       } else {
+        visibleVideos.delete(video);
         video.pause();
       }
     });
