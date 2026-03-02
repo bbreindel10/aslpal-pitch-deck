@@ -1565,6 +1565,21 @@
 
   fadeEls.forEach(el => fadeObserver.observe(el));
 
+  // ── Play/pause videos on scroll into view ──
+  const demoVideos = document.querySelectorAll('.demo-video-outline video');
+  const videoObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const video = entry.target;
+      if (entry.isIntersecting) {
+        video.play().catch(() => {});
+      } else {
+        video.pause();
+      }
+    });
+  }, { threshold: 0.3 });
+
+  demoVideos.forEach(v => videoObserver.observe(v));
+
   // ── Keyboard navigation ──
   document.addEventListener('keydown', (e) => {
     const currentIdx = Array.from(dots).findIndex(d => d.classList.contains('active'));
