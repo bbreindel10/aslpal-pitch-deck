@@ -919,6 +919,7 @@
       box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 80px rgba(98,0,181,0.15);
       position: relative;
       background: #000;
+      aspect-ratio: 16/9;
     }
 
     .demo-video-outline video {
@@ -927,6 +928,28 @@
       border-radius: 16px;
       image-rendering: high-quality;
     }
+
+    .demo-video-outline .video-loader {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #1a0a2e, #0b0b12);
+      z-index: 2;
+      transition: opacity 0.4s;
+    }
+    .demo-video-outline .video-loader.hidden { opacity: 0; pointer-events: none; }
+    .demo-video-outline .video-loader::after {
+      content: '';
+      width: 48px;
+      height: 48px;
+      border: 3px solid rgba(255,255,255,0.15);
+      border-top-color: #c084fc;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
 
   </style>
 </head>
@@ -1177,7 +1200,8 @@
     </p>
     <div class="fade-in fade-in-delay-3">
       <div class="demo-video-outline">
-        <video autoplay muted loop playsinline preload="auto">
+        <div class="video-loader"></div>
+        <video muted loop playsinline preload="auto">
           <source src="demo.mp4" type="video/mp4">
         </video>
       </div>
@@ -1200,7 +1224,8 @@
     </p>
     <div class="fade-in fade-in-delay-3">
       <div class="demo-video-outline">
-        <video autoplay muted loop playsinline preload="auto">
+        <div class="video-loader"></div>
+        <video muted loop playsinline preload="auto">
           <source src="demo-wrong.mp4" type="video/mp4">
         </video>
       </div>
@@ -1565,18 +1590,24 @@
 
   fadeEls.forEach(el => fadeObserver.observe(el));
 
-  // ── Play/pause videos on scroll into view ──
+  // ── Preload and autoplay videos on scroll ──
   const demoVideos = document.querySelectorAll('.demo-video-outline video');
   const visibleVideos = new Set();
 
-  function tryPlay(video) {
-    if (!visibleVideos.has(video)) return;
-    video.play().catch(() => {});
+  function hideLoader(video) {
+    const loader = video.parentElement.querySelector('.video-loader');
+    if (loader) loader.classList.add('hidden');
   }
 
+  // Start preloading all videos immediately so they're ready when scrolled into view
   demoVideos.forEach(v => {
-    v.addEventListener('canplay', () => tryPlay(v));
-    v.addEventListener('loadeddata', () => tryPlay(v));
+    v.addEventListener('playing', () => hideLoader(v));
+    v.addEventListener('canplay', () => {
+      hideLoader(v);
+      if (visibleVideos.has(v) && v.paused) v.play().catch(() => {});
+    });
+    v.preload = 'auto';
+    v.load();
   });
 
   const videoObserver = new IntersectionObserver((entries) => {
@@ -1584,14 +1615,13 @@
       const video = entry.target;
       if (entry.isIntersecting) {
         visibleVideos.add(video);
-        video.load();
-        tryPlay(video);
+        video.play().catch(() => {});
       } else {
         visibleVideos.delete(video);
         video.pause();
       }
     });
-  }, { threshold: 0.3 });
+  }, { threshold: 0.1 });
 
   demoVideos.forEach(v => videoObserver.observe(v));
 
