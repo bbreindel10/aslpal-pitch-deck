@@ -951,6 +951,119 @@
     }
     @keyframes spin { to { transform: rotate(360deg); } }
 
+    /* ── Video Controls (matches asl-pal-demo style) ── */
+    .video-controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 20px;
+      margin-top: 12px;
+      background: rgba(255,255,255,0.06);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 999px;
+      max-width: 960px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .video-controls button {
+      padding: 8px 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(192,132,252,0.25);
+      background: rgba(192,132,252,0.08);
+      color: #c084fc;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: inherit;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .video-controls button:hover {
+      background: rgba(192,132,252,0.18);
+      border-color: rgba(192,132,252,0.45);
+    }
+
+    .video-controls button svg {
+      width: 14px;
+      height: 14px;
+      fill: #c084fc;
+      flex-shrink: 0;
+    }
+
+    .video-timeline {
+      flex: 1;
+      height: 6px;
+      background: rgba(192,132,252,0.15);
+      border-radius: 3px;
+      cursor: pointer;
+      position: relative;
+      transition: height 0.15s;
+    }
+
+    .video-timeline:hover { height: 8px; }
+
+    .video-progress {
+      height: 100%;
+      background: linear-gradient(90deg, var(--purple), #a78bfa);
+      border-radius: 3px;
+      width: 0%;
+      position: relative;
+      transition: width 0.1s linear;
+    }
+
+    .video-progress::after {
+      content: '';
+      position: absolute;
+      right: -7px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 14px;
+      height: 14px;
+      background: #c084fc;
+      border-radius: 50%;
+      opacity: 0;
+      transition: opacity 0.15s;
+    }
+
+    .video-timeline:hover .video-progress::after { opacity: 1; }
+
+    .video-time {
+      font-size: 12px;
+      font-weight: 600;
+      color: rgba(240,238,245,0.45);
+      min-width: 80px;
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 600px) {
+      .video-controls { flex-wrap: wrap; border-radius: 16px; gap: 8px; padding: 10px 14px; }
+      .video-controls button { padding: 6px 12px; font-size: 12px; }
+    }
+
+    /* ── Tips manual navigation overrides ── */
+    .tips-slide-track.manual {
+      animation: none !important;
+      transition: transform 0.4s ease;
+    }
+    .tips-nav-btn { cursor: pointer; }
+    .tips-dot.active-dot {
+      background: var(--purple) !important;
+      opacity: 1 !important;
+      animation: none !important;
+    }
+    .tips-dot {
+      cursor: pointer;
+      transition: background 0.2s, opacity 0.2s;
+    }
+
   </style>
 </head>
 <body>
@@ -1198,11 +1311,20 @@
       Browse the homepage, select a lesson, practice signing, get feedback, and improve.
     </p>
     <div class="fade-in fade-in-delay-3">
-      <div class="demo-video-outline">
+      <div class="demo-video-outline" id="demo1-container">
         <div class="video-loader"></div>
-        <video muted loop playsinline preload="auto">
+        <video id="demo1" muted loop playsinline preload="auto">
           <source src="demo.mp4" type="video/mp4">
         </video>
+      </div>
+      <div class="video-controls" id="controls1">
+        <button onclick="restartVideo('demo1')"><svg viewBox="0 0 24 24"><path d="M17.65 6.35A7.96 7.96 0 0012 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0112 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg>Restart</button>
+        <button onclick="toggleVideo('demo1', this)" id="playbtn1"><svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg><svg class="icon-play" viewBox="0 0 24 24" style="display:none;"><path d="M8 5v14l11-7z"/></svg><span>Pause</span></button>
+        <button onclick="skipVideo('demo1', 10)"><svg viewBox="0 0 24 24"><path d="M4 18l8.5-6L4 6v12zm9-12v12l8.5-6L13 6z"/></svg>Skip</button>
+        <div class="video-timeline" onclick="seekVideo(event, 'demo1')" id="timeline1">
+          <div class="video-progress" id="progress1"></div>
+        </div>
+        <div class="video-time" id="time1">0:00 / 0:00</div>
       </div>
     </div>
   </div>
@@ -1222,11 +1344,20 @@
       Watch how ASL Pal identifies the user's mistake, and provides specific feedback with references to help the user improve. In this example the user needs to fix their handshape.
     </p>
     <div class="fade-in fade-in-delay-3">
-      <div class="demo-video-outline">
+      <div class="demo-video-outline" id="demo2-container">
         <div class="video-loader"></div>
-        <video muted loop playsinline preload="auto">
+        <video id="demo2" muted loop playsinline preload="auto">
           <source src="demo-wrong.mp4" type="video/mp4">
         </video>
+      </div>
+      <div class="video-controls" id="controls2">
+        <button onclick="restartVideo('demo2')"><svg viewBox="0 0 24 24"><path d="M17.65 6.35A7.96 7.96 0 0012 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0112 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg>Restart</button>
+        <button onclick="toggleVideo('demo2', this)" id="playbtn2"><svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg><svg class="icon-play" viewBox="0 0 24 24" style="display:none;"><path d="M8 5v14l11-7z"/></svg><span>Pause</span></button>
+        <button onclick="skipVideo('demo2', 10)"><svg viewBox="0 0 24 24"><path d="M4 18l8.5-6L4 6v12zm9-12v12l8.5-6L13 6z"/></svg>Skip</button>
+        <div class="video-timeline" onclick="seekVideo(event, 'demo2')" id="timeline2">
+          <div class="video-progress" id="progress2"></div>
+        </div>
+        <div class="video-time" id="time2">0:00 / 0:00</div>
       </div>
     </div>
   </div>
@@ -1663,6 +1794,104 @@
   }, { threshold: 0.1 });
 
   demoVideos.forEach(v => videoObserver.observe(v));
+
+  // ── Video Controls ──
+  function formatTime(s) {
+    if (isNaN(s)) return '0:00';
+    const m = Math.floor(s / 60);
+    const sec = Math.floor(s % 60);
+    return m + ':' + (sec < 10 ? '0' : '') + sec;
+  }
+
+  window.restartVideo = function(id) {
+    const v = document.getElementById(id);
+    v.currentTime = 0;
+    v.play().catch(() => {});
+    updatePlayBtn(id, true);
+  };
+
+  window.toggleVideo = function(id, btn) {
+    const v = document.getElementById(id);
+    if (v.paused) {
+      v.play().catch(() => {});
+      updatePlayBtn(id, true);
+    } else {
+      v.pause();
+      updatePlayBtn(id, false);
+    }
+  };
+
+  window.skipVideo = function(id, sec) {
+    const v = document.getElementById(id);
+    v.currentTime = Math.min(v.currentTime + sec, v.duration || 0);
+  };
+
+  window.seekVideo = function(e, id) {
+    const v = document.getElementById(id);
+    const rect = e.currentTarget.getBoundingClientRect();
+    const pct = (e.clientX - rect.left) / rect.width;
+    v.currentTime = pct * (v.duration || 0);
+  };
+
+  function updatePlayBtn(id, playing) {
+    const num = id.replace('demo', '');
+    const btn = document.getElementById('playbtn' + num);
+    if (!btn) return;
+    const pauseIcon = btn.querySelector('.icon-pause');
+    const playIcon = btn.querySelector('.icon-play');
+    const label = btn.querySelector('span');
+    if (playing) {
+      pauseIcon.style.display = '';
+      playIcon.style.display = 'none';
+      label.textContent = 'Pause';
+    } else {
+      pauseIcon.style.display = 'none';
+      playIcon.style.display = '';
+      label.textContent = 'Play';
+    }
+  }
+
+  // Update progress bars
+  demoVideos.forEach(v => {
+    const num = v.id.replace('demo', '');
+    v.addEventListener('timeupdate', () => {
+      const pct = v.duration ? (v.currentTime / v.duration) * 100 : 0;
+      const prog = document.getElementById('progress' + num);
+      const time = document.getElementById('time' + num);
+      if (prog) prog.style.width = pct + '%';
+      if (time) time.textContent = formatTime(v.currentTime) + ' / ' + formatTime(v.duration);
+    });
+    v.addEventListener('play', () => updatePlayBtn(v.id, true));
+    v.addEventListener('pause', () => updatePlayBtn(v.id, false));
+  });
+
+  // ── Tips Manual Navigation ──
+  const tipsTrack = document.querySelector('.tips-slide-track');
+  const tipsDots = document.querySelectorAll('.tips-dot');
+  const tipsNavBtns = document.querySelectorAll('.tips-nav-btn');
+  let currentTip = 0;
+  const totalTips = 4;
+
+  function goToTip(idx) {
+    if (idx < 0) idx = totalTips - 1;
+    if (idx >= totalTips) idx = 0;
+    currentTip = idx;
+    tipsTrack.classList.add('manual');
+    tipsTrack.style.transform = 'translateX(-' + (currentTip * 25) + '%)';
+    tipsDots.forEach((d, i) => {
+      d.classList.toggle('active-dot', i === currentTip);
+      d.style.animation = 'none';
+    });
+  }
+
+  // Previous button
+  if (tipsNavBtns[0]) tipsNavBtns[0].addEventListener('click', () => goToTip(currentTip - 1));
+  // Next button
+  if (tipsNavBtns[1]) tipsNavBtns[1].addEventListener('click', () => goToTip(currentTip + 1));
+  // Dot clicks
+  tipsDots.forEach((dot, i) => dot.addEventListener('click', () => goToTip(i)));
+  // Initialize first dot
+  goToTip(0);
 
   // ── Keyboard navigation ──
   document.addEventListener('keydown', (e) => {
