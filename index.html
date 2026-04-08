@@ -927,6 +927,11 @@
       display: block;
       border-radius: 16px;
       image-rendering: high-quality;
+      transition: transform 0.6s ease;
+      transform-origin: top center;
+    }
+    #demo2.zoomed-in {
+      transform: scale(1.35) translateY(-2%);
     }
 
     .demo-video-outline .video-loader {
@@ -1849,6 +1854,19 @@
       playIcon.style.display = '';
       label.textContent = 'Play';
     }
+  }
+
+  // Zoom demo2 between 11s–31s to hide fun fact
+  const demo2 = document.getElementById('demo2');
+  if (demo2) {
+    demo2.addEventListener('timeupdate', () => {
+      const t = demo2.currentTime;
+      if (t >= 11 && t <= 31) {
+        demo2.classList.add('zoomed-in');
+      } else {
+        demo2.classList.remove('zoomed-in');
+      }
+    });
   }
 
   // Update progress bars
